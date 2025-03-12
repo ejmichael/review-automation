@@ -1,27 +1,34 @@
 const express = require('express');
 const cors = require('cors');
+const reviewRouter = require('./src/routes/reviewRoute');
+const connectToMongoDB = require('./src/db');
+const businessRouter = require('./src/routes/businessRoute');
 const dotenv = require('dotenv').config();
-
+ 
 const app = express();
 
-app.get('/', (req, res) => {
-    res.send("Home Route");
-});
+
 
 (async () => {
     try {
         // Connect to MongoDB
-        //await connectToMongoDB();
+        await connectToMongoDB();
         
         // Middleware
         app.use(express.json());
-        app.use(cors());
-        app.use(express.urlencoded({ extended: false }));
+        app.use(cors({ 
+            origin: "http://localhost:3000"
+          }));
+        app.use(express.urlencoded({ extended: true }));
 
         // Routes
         app.get('/', (req, res) => {
             res.send("Home Route");
         });
+
+
+        app.use('/review', reviewRouter) 
+        app.use('/business', businessRouter) 
 
           
 

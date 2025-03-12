@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 const reviewSchema = new mongoose.Schema({
     businessID: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'Business',
+      ref: 'BusinessInfo',
       required: true,
     },
     rating: {
@@ -22,11 +22,9 @@ const reviewSchema = new mongoose.Schema({
     },
     phone: {
       type: String,
-      required: true,
     },
     email: {
       type: String,
-      required: true,
     },
     optInSMS: {
       type: Boolean,
@@ -36,6 +34,9 @@ const reviewSchema = new mongoose.Schema({
       type: Boolean,
       default: false,
     },
+    feedback: {
+      type: String,
+    }
   }, { 
     timestamps: true 
 });

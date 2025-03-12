@@ -1,9 +1,9 @@
 const express = require('express');
 const {createBusiness, getBusinessInfo} = require('../controllers/businessController')
 
-const router = express.Router();
+const businessRouter = express.Router();
 
-router.post('/', createBusiness);
-router.get('/', getBusinessInfo);
+businessRouter.post('/create', createBusiness);
+businessRouter.get('/:businessId', getBusinessInfo);
 
-module.exports = router;
+module.exports = businessRouter;

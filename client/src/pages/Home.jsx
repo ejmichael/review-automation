@@ -58,7 +58,7 @@ const Home = () => {
                     <div className='border shadow-md rounded-md p-6 bg-white w-full'>
                         <div className='text-left font-medium text-lg'>Score</div>
                         <div className='p-4 items-end my-2'>
-                            <p className='text-5xl text-slate-800 mb-3'>70/82</p>
+                            <p className='text-5xl text-slate-800 mb-3'>{((70/82)*100).toFixed(2)}%</p>
                             <p className='text-slate-600 italic'>reviews were 5 star</p>
                         </div>
                     </div>

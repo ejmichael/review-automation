@@ -1,7 +1,10 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
 
 const Sidebar = () => {
+
+      const {businessID} = useParams();
+
   return (
     <div className="w-1/4 bg-white p-4">
         <div className='p-2 border-b-2 border-blue-400'>
@@ -9,7 +12,7 @@ const Sidebar = () => {
         </div>
       <nav>
         <NavLink
-          to="/dashboard/home"
+          to={`/dashboard/${businessID}/home`}
           className={({ isActive }) =>
             `block w-full text-left py-2 px-4 my-2 rounded ${isActive ? 'bg-blue-400' : 'hover:bg-blue-400'}`
           }
@@ -17,7 +20,7 @@ const Sidebar = () => {
           Dashboard
         </NavLink>
         <NavLink
-          to="/dashboard/reviews"
+          to={`/dashboard/${businessID}/reviews`}
           className={({ isActive }) =>
             `block w-full text-left py-2 px-4 my-2 rounded ${isActive ? 'bg-blue-400' : 'hover:bg-blue-400'}`
           }
@@ -25,7 +28,7 @@ const Sidebar = () => {
           Reviews
         </NavLink>
         <NavLink
-          to="/dashboard/profile"
+          to={`/dashboard/${businessID}/profile`}
           className={({ isActive }) =>
             `block w-full text-left py-2 px-4 my-2 rounded ${isActive ? 'bg-blue-400' : 'hover:bg-blue-400'}`
           }
@@ -33,7 +36,7 @@ const Sidebar = () => {
           Profile
         </NavLink>
         <NavLink
-          to="/dashboard/qr-manager"
+          to={`/dashboard/${businessID}/qr-manager`}
           className={({ isActive }) =>
             `block w-full text-left py-2 px-4 my-2 rounded ${isActive ? 'bg-blue-400' : 'hover:bg-blue-400'}`
           }

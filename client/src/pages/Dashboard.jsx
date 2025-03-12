@@ -1,20 +1,24 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Sidebar from '../components/Sidebar'
-import { Navigate, Route, Routes, useNavigate } from 'react-router-dom'
+import { Navigate, Route, Outlet, Routes, useNavigate, useParams } from 'react-router-dom'
 import DashboardView from './DashboardView';
 
 const Dashboard = () => {
     const navigate = useNavigate();
+    const { businessID, view } = useParams();
+    
+    useEffect(() => {
+      if (!view) {
+          navigate(`/dashboard/${businessID}/home`, { replace: true });
+      }
+  }, [businessID, navigate]);
 
 
   return (
     <div className="bg-slate-100 flex h-[100vh]">
-        <Sidebar/>
+        <Sidebar businessID={businessID} />
         <div className='w-full'>
-            <Routes>
-                <Route path="/" element={<Navigate to="/dashboard/home" />} />
-                <Route path="/:view" element={<DashboardView />} />
-            </Routes>
+            <Outlet/>
         </div>
     </div>
   )
