@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Home = () => {
+const Home = ({businessInfo}) => {
   return (
     <div className='w-full p-4'>
         <div className='w-full flex justify-between mb-4'>
@@ -44,14 +44,14 @@ const Home = () => {
                     <div className='border shadow-md rounded-md p-6 bg-white w-full'>
                         <div className='text-left font-medium text-lg'>Review requests</div>
                         <div className='p-4 items-end my-2'>
-                            <p className='text-5xl text-slate-800 mb-3' >189</p>
+                            <p className='text-5xl text-slate-800 mb-3' >0</p>
                             <p className='text-slate-600 italic'>reviews requested</p>
                         </div>
                     </div>
                     <div className='border shadow-md rounded-md p-6 bg-white w-full'>
                         <div className='text-left font-medium text-lg'>Review recieved</div>
                         <div className='p-4 items-end my-2'>
-                            <p className='text-5xl text-slate-800 mb-3'>82</p>
+                            <p className='text-5xl text-slate-800 mb-3'>{businessInfo?.reviews.length}</p>
                             <p className='text-slate-600 italic'>reviews recieved</p>
                         </div>
                     </div>
