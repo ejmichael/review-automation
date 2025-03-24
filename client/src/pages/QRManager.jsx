@@ -7,7 +7,7 @@ const QRManager = () => {
 
     const handleGenerateQRCode = () => {
         if(businessID.trim()) {
-            const qrLink = `http://localhost:3000/review/${businessID}`;
+            const qrLink = `https://review-automation.onrender.com/review/${businessID}`;
             setQRCodeValue(qrLink)
         } else {
             alert("Please enter a valid business ID")
