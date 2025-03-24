@@ -71,10 +71,12 @@ const ReviewPage = () => {
     
     const handleSubmit = async(e) => {
         e.preventDefault();
+        setIsLoading(true)
 
 
         if (reviewData.rating === 0) {
             alert("Please select a rating")
+            setIsLoading(false)
             return
         }
 
@@ -82,6 +84,7 @@ const ReviewPage = () => {
             console.log("Showing Complaint Form");
             setShowComplaintsForm(true);
             setHideMainForm(true);
+            setIsLoading(false)
         } else {
             //Create the review on our system
             const review = await axios.post(domain + '/review/create/' + businessID, {
@@ -117,11 +120,12 @@ const ReviewPage = () => {
             if(review.status === 201) {
                 setShowComplaintsForm(false)
                 setFormCompleted(true)
+                setIsLoading(false)
 
             }
           } catch (error) {
             console.log(error.message);
-                        
+            setIsLoading(false)     
           }
     }
 
@@ -282,7 +286,7 @@ const ReviewPage = () => {
 
                 {showComplaintsForm && (
                     <div className="mt-10 p-6 bg-gray-100 rounded-lg">
-                        <h2 className="text-xl font-bold mb-4">We're sorry you did not have a 5-star experience!</h2>
+                        <h2 className="text-xl font-bold mb-4 tetx-black">We're sorry you did not have a 5-star experience!</h2>
                         <textarea
                             placeholder="Tell us about your experience..."
                             className="w-full p-2 border border-gray-300 rounded"
@@ -295,7 +299,7 @@ const ReviewPage = () => {
                 )}
 
                 {formCompleted && (
-                    <div className="mt-10 p-6 bg-gray-100 rounded-lg">
+                    <div className="mt-10 p-6 bg-gray-100 rounded-lg text-black">
                         <h2 className="text-xl font-bold mb-6 my-2">Thank you for your feedback!</h2>
                         <div className='bg-slate-300 h-[200px] font-bold text-3xl text-center content-center'>
                             ADVERTISEMENT
