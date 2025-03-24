@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 const Register = () => {
 
-    const domain = window.location.href.includes('localhost') ? "http://localhost:5000" : "";
+    const domain = window.location.href.includes('localhost') ? "http://localhost:5000" : "https://review-automation-backend.onrender.com";
     const [profilePicture, setProfilePicture] = useState(null);
     const [imageURL, setImageURL] = useState("");
     const navigate = useNavigate()

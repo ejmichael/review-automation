@@ -10,7 +10,7 @@ const DashboardView = () => {
     const {businessID, view} = useParams();
     const [businessInfo, setBusinessInfo] = useState(null);
 
-    const domain = window.location.href.includes('localhost') ? "http://localhost:5000" : "";
+    const domain = window.location.href.includes('localhost') ? "http://localhost:5000" : "https://review-automation-backend.onrender.com";
 
 
     useEffect(() => {

@@ -6,13 +6,6 @@ import { IoStar, IoStarOutline } from "react-icons/io5";
 const ReviewPage = () => {
     const {businessID} = useParams()
 
-    const [rating, setRating] = useState(0);
-    const [name, setName] = useState('');
-    const [surname, setSurname] = useState('');
-    const [phone, setPhone] = useState('');
-    const [email, setEmail] = useState('');
-    const [optInSMS, setOptInSMS] = useState(false);
-    const [optInEmail, setOptInEmail] = useState(false);
     const [showComplaintsForm, setShowComplaintsForm] = useState(false);
     const [feedback, setFeedback] = useState("");
     const [formCompleted, setFormCompleted] = useState(false);
@@ -20,8 +13,30 @@ const ReviewPage = () => {
     const [businessInfo, setBusinessInfo] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
 
-    const domain = window.location.href.includes('localhost') ? "http://localhost:5000" : "";
+    const domain = window.location.href.includes('localhost') ? "http://localhost:5000" : "https://review-automation-backend.onrender.com";
   
+    const [reviewData, setReviewData] = useState({
+        businessID,
+        rating: '',
+        name: '',
+        surname: '',
+        phone: '',
+        email: '',
+        optInSMS: false,
+        optInEmail: false,
+        feedback: ''
+      });
+
+          // Handle input change
+          const handleChange = (e) => {
+            const { name, value, type, checked } = e.target;
+        
+            setReviewData((prevData) => ({
+                ...prevData,
+                [name]: type === 'checkbox' ? checked : value, // Correctly handle checkboxes
+            }));
+        };
+    
     useEffect(() => {
 
         setIsLoading(true)
@@ -49,30 +64,21 @@ const ReviewPage = () => {
     }, [businessID])
 
     console.log(businessInfo);
+
+
     
 
     
     const handleSubmit = async(e) => {
         e.preventDefault();
 
-        const reviewData = {
-            businessID,
-            rating,
-            name,
-            surname,
-            phone,
-            email,
-            optInSMS,
-            optInEmail,
-            feedback
-          };
 
-        if (rating === 0) {
+        if (reviewData.rating === 0) {
             alert("Please select a rating")
             return
         }
 
-        if (rating < 5) {
+        if (reviewData.rating < 5) {
             console.log("Showing Complaint Form");
             setShowComplaintsForm(true);
             setHideMainForm(true);
@@ -83,13 +89,7 @@ const ReviewPage = () => {
             })
 
              // Reset form fields after submission
-                setRating(0);
-                setName('');
-                setSurname('');
-                setPhone('');
-                setEmail('');
-                setOptInSMS(false);
-                setOptInEmail(false);
+
             
             console.log("Redirecting to Google Review Page");
             if(review) {
@@ -108,18 +108,6 @@ const ReviewPage = () => {
 
         //console.log(reviewData);
 
-        const reviewData = {
-            businessID,
-            rating,
-            name,
-            surname,
-            phone,
-            email,
-            optInSMS,
-            optInEmail,
-            feedback
-          };
-
           console.log(reviewData);
 
           try {
@@ -129,13 +117,7 @@ const ReviewPage = () => {
             if(review.status === 201) {
                 setShowComplaintsForm(false)
                 setFormCompleted(true)
-                setRating(0);
-                setName('');
-                setSurname('');
-                setPhone('');
-                setEmail('');
-                setOptInSMS(false);
-                setOptInEmail(false);
+
             }
           } catch (error) {
             console.log(error.message);
@@ -170,12 +152,18 @@ const ReviewPage = () => {
                         <div className='mb-[15px] flex gap-6 justify-center '>
                             {[1,2,3,4,5].map((star) => (
                                 <label 
-                                    key={star} 
+                                    key={star}
                                     className='cursor-pointer m-[5px]'
-                                    onClick={() => setRating(star)}
+                                    onClick={() => {
+                                        ; // Update rating state
+                                        setReviewData(prevData => ({
+                                            ...prevData,
+                                            rating: star
+                                        }));
+                                    }}
                                 >
                                     
-                                    {rating >= star ? (
+                                    {reviewData.rating >= star ? (
                                         <IoStar className='w-[150%] h-[150%]' style={{ color: 'gold', }} /> // Filled star when rating is equal to or greater than the current star
                                     ) : (
                                         <IoStarOutline className='w-[150%] h-[150%]' style={{ color: 'gold' }} /> // Outline star when rating is less than the current star
@@ -188,9 +176,11 @@ const ReviewPage = () => {
                         <label htmlFor="name" className=''>Name: </label>
                         <input
                             type="text"
+                            className='text-black'
                             id="name"
-                            value={name}
-                            onChange={(e) => setName(e.target.value)}
+                            name="name"
+                            value={reviewData.name}
+                            onChange={handleChange}
                             placeholder="Enter your name"
                             required
                             style={{ padding: '8px', width: '100%', borderRadius: '8px' }}
@@ -201,9 +191,11 @@ const ReviewPage = () => {
                         <label htmlFor="surname">Surname: </label>
                         <input
                             type="text"
+                            className='text-black'
+                            name="surname"
                             id="surname"
-                            value={surname}
-                            onChange={(e) => setSurname(e.target.value)}
+                            value={reviewData.surname}
+                            onChange={handleChange}
                             placeholder="Enter your surname"
                             required
                             style={{ padding: '8px', width: '100%', borderRadius: '8px' }}
@@ -213,10 +205,12 @@ const ReviewPage = () => {
                     <div className='mb-3'>
                         <label htmlFor="phone">Phone: </label>
                         <input
+                            className='text-black'
                             type="text"
                             id="phone"
-                            value={phone}
-                            onChange={(e) => setPhone(e.target.value)}
+                            name="phone"
+                            value={reviewData.phone}
+                            onChange={handleChange}
                             placeholder="Enter your phone number"
                             required
                             style={{ padding: '8px', width: '100%', borderRadius: '8px' }}
@@ -226,10 +220,12 @@ const ReviewPage = () => {
                     <div className='mb-3'>
                         <label htmlFor="email">Email: </label>
                         <input
+                            className='text-black'
                             type="email"
                             id="email"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
+                            name="email"
+                            value={reviewData.email}
+                            onChange={handleChange}
                             placeholder="Enter your email address"
                             required
                             style={{ padding: '8px', width: '100%', borderRadius: '8px' }}
@@ -246,17 +242,18 @@ const ReviewPage = () => {
                             <div className="flex items-center space-x-2 p-2 rounded-lg border border-gray-300 bg-white hover:bg-gray-200 transition">
                                 <input
                                     type="checkbox"
-                                    checked={optInSMS}
-                                    onChange={() => setOptInSMS(!optInSMS)}
-                                    className="w-8 h-5 text-blue-600 border-gray-300 rounded focus:ring focus:ring-blue-400 cursor-pointer"
+                                    checked={reviewData.optInSMS}
+                                    name="optInSMS"
+                                    onChange={handleChange}                                    className="w-8 h-5 text-blue-600 border-gray-300 rounded focus:ring focus:ring-blue-400 cursor-pointer"
                                 />
                                 <p className="text-gray-700 font-medium">SMS me</p>
                             </div>
                             <div className="flex items-center space-x-2 p-2 rounded-lg border border-gray-300 bg-white hover:bg-gray-200 transition">
                                 <input
                                     type="checkbox"
-                                    checked={optInEmail}
-                                    onChange={() => setOptInEmail(!optInEmail)}
+                                    checked={reviewData.optInEmail}
+                                    name="optInEmail"
+                                    onChange={handleChange}
                                     className="w-8 h-5 text-blue-600 border-gray-300 rounded focus:ring focus:ring-blue-400 cursor-pointer"
                                 />
                                 <p className="text-gray-700 font-medium">Email me</p>

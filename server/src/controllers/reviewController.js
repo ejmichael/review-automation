@@ -3,38 +3,41 @@ const BusinessInfo = require('../models/businessInfoModel')
 
 const createReview = async (req, res) => {
   try {
-    const {businessID} = req.params;
-    const {reviewData} = req.body;
+    const { businessID } = req.params;
+    const { reviewData } = req.body;
 
-    const businessExists = await BusinessInfo.findById(businessID)
-    
+    console.log("Received data:", req.body);
+
+    if (!reviewData) {
+      return res.status(400).json({ message: "Review data is missing!" });
+    }
+
+    const { phone, email } = reviewData; // Extract phone and email safely
+
+    const businessExists = await BusinessInfo.findById(businessID);
+
+    if (!businessExists) {
+      return res.status(400).json({ message: "Business not found!" });
+    }
+
     const reviewedByUser = await Review.findOne({
-      $or: [
-        { phone},
-        { email }
-      ]
+      $or: [{ phone }, { email }],
     });
 
-    if(!businessExists) {
-      res.status(400).json({ message: "Business not found!" });
-      return
+    if (reviewedByUser) {
+      return res.status(400).json({ message: "You have already submitted a review!" });
     }
 
-    if(reviewedByUser) {
-      res.status(400).json({ message: "You have already submitted a review!" });
-      return
-    }
-   
-    
     const review = await Review.create(reviewData);
-    
+
     businessExists.reviews.push(review._id);
     await businessExists.save();
 
-    console.log(reviewData);
-    
-    res.status(201).json({message:"Review added successfully", review});
+    console.log("Review Created:", review);
+
+    res.status(201).json({ message: "Review added successfully", review });
   } catch (error) {
+    console.error("Error creating review:", error);
     res.status(500).json({ message: error.message });
   }
 };
