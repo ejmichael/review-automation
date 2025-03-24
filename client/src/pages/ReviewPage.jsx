@@ -294,7 +294,7 @@ const ReviewPage = () => {
                             value={feedback}
                             onChange={(e) => setFeedback(e.target.value)}
                         ></textarea>
-                        <button onClick={submitFeedback} className="mt-4 px-6 py-2 bg-red-500 text-white rounded">Submit Complaint</button>
+                        <button onClick={submitFeedback} className="mt-4 px-6 py-2 bg-red-500 text-white rounded">{isLoading ? 'Submitting': 'Submit Complaint'}</button>
                     </div>
                 )}
 
