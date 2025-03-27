@@ -1,4 +1,5 @@
 import React from 'react'
+import DashboardTable from '../components/DashboardTable'
 
 const Home = ({businessInfo}) => {
   return (
@@ -8,7 +9,8 @@ const Home = ({businessInfo}) => {
                 Overview
             </div>
             <div>
-                <button 
+                <button
+                disabled 
                     style={{
                         padding: "10px 15px",
                         backgroundColor: "#28a745",
@@ -16,6 +18,7 @@ const Home = ({businessInfo}) => {
                         border: "none",
                         borderRadius: "5px",
                         cursor: "pointer",
+                        
                     }}
                 >
                     Send Review Request
@@ -42,26 +45,31 @@ const Home = ({businessInfo}) => {
 
                 <div className='flex gap-4 '>
                     <div className='border shadow-md rounded-md p-6 bg-white w-full'>
-                        <div className='text-left font-medium text-lg'>Review requests</div>
+                        <div className='text-left font-medium text-lg'>Reviews</div>
                         <div className='p-4 items-end my-2'>
-                            <p className='text-5xl text-slate-800 mb-3' >0</p>
-                            <p className='text-slate-600 italic'>reviews requested</p>
+                            <p className='text-5xl text-slate-800 mb-3' >{businessInfo?.reviews.length}</p>
+                            <p className='text-slate-600 italic'>reviews recieved</p>
                         </div>
                     </div>
                     <div className='border shadow-md rounded-md p-6 bg-white w-full'>
-                        <div className='text-left font-medium text-lg'>Review recieved</div>
+                        <div className='text-left font-medium text-lg'>5-star reviews</div>
                         <div className='p-4 items-end my-2'>
                             <p className='text-5xl text-slate-800 mb-3'>{businessInfo?.reviews.length}</p>
-                            <p className='text-slate-600 italic'>reviews recieved</p>
+                            {/* <p className='text-slate-600 italic'>recieved</p> */}
                         </div>
                     </div>
                     <div className='border shadow-md rounded-md p-6 bg-white w-full'>
                         <div className='text-left font-medium text-lg'>Score</div>
                         <div className='p-4 items-end my-2'>
-                            <p className='text-5xl text-slate-800 mb-3'>{((70/82)*100).toFixed(2)}%</p>
-                            <p className='text-slate-600 italic'>reviews were 5 star</p>
+                            <p className='text-5xl text-slate-800 mb-3'>{businessInfo?.reviews.length > 0 ? (
+                                ((businessInfo?.reviews.filter(review => review.rating === 5).length / businessInfo?.reviews.length) * 100).toFixed(1)
+                            ) : (0)} %</p>
+                            <p className='text-slate-600 italic'>of reviews were 5 star</p>
                         </div>
                     </div>
+                </div>
+                <div>
+                    <DashboardTable reviews={businessInfo.reviews} />
                 </div>
             </div>
     </div>

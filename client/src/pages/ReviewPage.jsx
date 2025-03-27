@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import axios from 'axios';
 import { IoStar, IoStarOutline } from "react-icons/io5";
 
@@ -144,7 +144,7 @@ const ReviewPage = () => {
         className={`p-8 relative h-[100vh] bg-cover bg-center overflow-auto max-h-[100vh]`}
     >
         <div className="absolute inset-0"></div> 
-        <div className='p-6 bg-black bg-opacity-80 lg:max-w-[45%] mx-auto rounded-lg text-white '>
+        <div className='relative z-20 p-6 bg-black bg-opacity-80 lg:max-w-[45%] mx-auto rounded-lg text-white '>
             <p className='text-3xl my-6 font-bold relative'>
                 {businessInfo?.businessName && businessInfo.businessName}
             </p>
@@ -285,17 +285,20 @@ const ReviewPage = () => {
                 </form>)}
 
                 {showComplaintsForm && (
-                    <div className="mt-10 p-6 bg-gray-100 rounded-lg">
-                        <h2 className="text-xl font-bold mb-4 text-black">We're sorry you did not have a 5-star experience!</h2>
-                        <textarea
-                            placeholder="Tell us about your experience..."
-                            className="w-full p-2 border border-gray-300 rounded"
-                            rows="4"
-                            value={feedback}
-                            onChange={(e) => setFeedback(e.target.value)}
-                        ></textarea>
-                        <button onClick={submitFeedback} className="mt-4 px-6 py-2 bg-red-500 text-white rounded">{isLoading ? 'Submitting': 'Submit Complaint'}</button>
-                    </div>
+                    <>
+                        <div className="mt-10 p-6 bg-gray-100 rounded-lg">
+                            <h2 className="text-xl font-bold mb-4 text-black">We're sorry you did not have a 5-star experience!</h2>
+                            <textarea
+                                placeholder="Tell us about your experience..."
+                                className="w-full p-2 border border-gray-300 rounded"
+                                rows="4"
+                                value={feedback}
+                                onChange={(e) => setFeedback(e.target.value)}
+                            ></textarea>
+                            <button onClick={submitFeedback} className="mt-4 px-6 py-2 bg-red-500 text-white rounded">{isLoading ? 'Submitting': 'Submit Complaint'}</button>
+                        </div>
+                        
+                    </>
                 )}
 
                 {formCompleted && (
@@ -307,6 +310,9 @@ const ReviewPage = () => {
                     </div>
                 )}
 
+            </div>
+            <div>
+                <p className='text-xs p-2'>By submitting this form, you agree to our<Link className='text-blue-500 cursor-pointer p-2' to='/terms-and-conditions'>Terms and Conditions & Privacy Policy</Link></p>
             </div>
         </div>
     </div>
