@@ -13,8 +13,8 @@ const Reviews = ({ reviews }) => {
           <div 
             key={review._id} 
             className="bg-white p-4 shadow-md rounded-md justify-between ">
-            <div className="flex mb-8 justify-between">
-              <h3 className="text-lg font-semibold">{review.name} {review.surname}</h3>
+            <div className="text-left mb-4 justify-between">
+              <h3 className="text-lg font-semibold mb-3">{review.name} {review.surname}</h3>
               <span className="text-yellow-500 font-bold">{'⭐'.repeat(review.rating)}</span>
             </div>
             <p className="text-gray-700 mt-2 text-left min-h-[100px]">

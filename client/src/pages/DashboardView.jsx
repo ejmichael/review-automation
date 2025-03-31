@@ -5,6 +5,7 @@ import Profile from './Profile';
 import QRManager from './QRManager';
 import Reviews from './Reviews';
 import axios from 'axios';
+import LeadLists from './LeadLists';
 
 const DashboardView = () => {
     const {businessID, view} = useParams();
@@ -37,6 +38,8 @@ const DashboardView = () => {
             return <Reviews reviews={businessInfo.reviews} />;
           case 'profile':
             return <Profile businessInfo={businessInfo} />;
+          case 'lists':
+            return <LeadLists businessInfo={businessInfo} />;
           case 'qr-manager':
             return <QRManager businessInfo={businessInfo} />;
           default:

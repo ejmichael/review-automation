@@ -7,8 +7,9 @@ const DashboardTable = ({reviews}) => {
     console.log(reviews);
     
   return (
-    <div className='overflow-x-auto py-4'>
-        <table className="min-w-full bg-white border border-gray-200 rounded-lg shadow-md">
+    <div className='overflow-x-auto bg-white p-2 rounded-md shadow-md'>
+        <h1 className='text-xl font-medium p-2'>Reviews</h1>
+        <table className="min-w-full bg-white border border-gray-200 rounded-lg ">
             <thead >
                 <tr className="bg-gray-100 text-gray-600 uppercase text-sm leading-normal">
                     <th className="py-3 px-6 text-left">Name</th>

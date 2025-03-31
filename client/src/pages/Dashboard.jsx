@@ -15,11 +15,13 @@ const Dashboard = () => {
 
 
   return (
-    <div className="bg-slate-100 flex h-[100vh]">
-        <Sidebar businessID={businessID} />
-        <div className='w-full'>
-            <Outlet/>
-        </div>
+    <div className="bg-slate-100 h-screen flex ">
+        
+                <Sidebar businessID={businessID} />
+
+            <div className="ml-[20%] w-[80%] h-screen overflow-auto p-4">
+                <Outlet />
+            </div>
     </div>
   )
 }

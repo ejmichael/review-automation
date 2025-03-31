@@ -144,7 +144,7 @@ const ReviewPage = () => {
         className={`p-8 relative h-[100vh] bg-cover bg-center overflow-auto max-h-[100vh]`}
     >
         <div className="absolute inset-0"></div> 
-        <div className='relative z-20 p-6 bg-black bg-opacity-80 lg:max-w-[45%] mx-auto rounded-lg text-white '>
+        <div className='relative z-20 p-5 bg-black bg-opacity-80 lg:max-w-[45%] mx-auto rounded-lg text-white '>
             <p className='text-3xl my-6 font-bold relative'>
                 {businessInfo?.businessName && businessInfo.businessName}
             </p>
@@ -238,7 +238,7 @@ const ReviewPage = () => {
 
                     <div className='my-4'>
                         <div>
-                            <p className=''>
+                            <p className='py-2'>
                                 Where can we send exclusive discounts and promos?
                             </p>
                         </div>
@@ -250,7 +250,7 @@ const ReviewPage = () => {
                                     name="optInSMS"
                                     onChange={handleChange}                                    className="w-8 h-5 text-blue-600 border-gray-300 rounded focus:ring focus:ring-blue-400 cursor-pointer"
                                 />
-                                <p className="text-gray-700 font-medium">SMS me</p>
+                                <p className="text-gray-700 font-medium ">SMS me</p>
                             </div>
                             <div className="flex items-center space-x-2 p-2 rounded-lg border border-gray-300 bg-white hover:bg-gray-200 transition">
                                 <input
@@ -260,7 +260,7 @@ const ReviewPage = () => {
                                     onChange={handleChange}
                                     className="w-8 h-5 text-blue-600 border-gray-300 rounded focus:ring focus:ring-blue-400 cursor-pointer"
                                 />
-                                <p className="text-gray-700 font-medium">Email me</p>
+                                <p className="text-gray-700 font-medium ">Email me</p>
                             </div>
                         </div>
                     </div>
@@ -270,7 +270,7 @@ const ReviewPage = () => {
                             type="submit"
                             style={{
                                 width: '100%',
-                                margin: '20px auto',
+                                margin: '20px 10px',
                                 padding: '10px 20px',
                                 backgroundColor: '#007bff',
                                 color: '#fff',

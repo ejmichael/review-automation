@@ -1,5 +1,6 @@
 import React from 'react'
 import DashboardTable from '../components/DashboardTable'
+import ReviewChart from '../components/ReviewChart'
 
 const Home = ({businessInfo}) => {
   return (
@@ -44,29 +45,32 @@ const Home = ({businessInfo}) => {
                 </div>
 
                 <div className='flex gap-4 '>
-                    <div className='border shadow-md rounded-md p-6 bg-white w-full'>
+                    <div className='border shadow-md rounded-md p-4 bg-white w-full'>
                         <div className='text-left font-medium text-lg'>Reviews</div>
-                        <div className='p-4 items-end my-2'>
+                        <div className='p-3 items-end my-2'>
                             <p className='text-5xl text-slate-800 mb-3' >{businessInfo?.reviews.length}</p>
                             <p className='text-slate-600 italic'>reviews recieved</p>
                         </div>
                     </div>
-                    <div className='border shadow-md rounded-md p-6 bg-white w-full'>
+                    <div className='border shadow-md rounded-md p-4 bg-white w-full'>
                         <div className='text-left font-medium text-lg'>5-star reviews</div>
-                        <div className='p-4 items-end my-2'>
+                        <div className='p-3 items-end my-2'>
                             <p className='text-5xl text-slate-800 mb-3'>{businessInfo?.reviews.length}</p>
                             {/* <p className='text-slate-600 italic'>recieved</p> */}
                         </div>
                     </div>
-                    <div className='border shadow-md rounded-md p-6 bg-white w-full'>
+                    <div className='border shadow-md rounded-md p-4 bg-white w-full'>
                         <div className='text-left font-medium text-lg'>Score</div>
-                        <div className='p-4 items-end my-2'>
+                        <div className='p-3 items-end my-2'>
                             <p className='text-5xl text-slate-800 mb-3'>{businessInfo?.reviews.length > 0 ? (
                                 ((businessInfo?.reviews.filter(review => review.rating === 5).length / businessInfo?.reviews.length) * 100).toFixed(1)
                             ) : (0)} %</p>
                             <p className='text-slate-600 italic'>of reviews were 5 star</p>
                         </div>
                     </div>
+                </div>
+                <div>
+                    <ReviewChart reviews={businessInfo.reviews} />
                 </div>
                 <div>
                     <DashboardTable reviews={businessInfo.reviews} />
