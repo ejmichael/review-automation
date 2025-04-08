@@ -120,7 +120,7 @@ const Register = () => {
 
             if(response.data?.message === "created"){
                 console.log(response.data);
-                navigate(`/dashboard/${response.data._id}`)
+                navigate(`/dashboard/${response.data.business._id}`)
             }
             
             
