@@ -8,6 +8,7 @@ import Register from './pages/auth/Register';
 import Landing from './pages/Landing';
 import TermsAndConditions from './pages/TermsAndConditions';
 import PrivacyPolicy from './pages/PrivacyPolicy';
+import Payment from './pages/Payment';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route exact path="/review/:businessID" element={<ReviewPage/>}/>
         <Route exact path="/login" element={<Login/>}/>
         <Route exact path="/register" element={<Register/>}/>
+        <Route exact path="/payment" element={<Payment/>}/>
         {/* <Route  path="/dashboard/:businessID" element={<Dashboard/>}/> */}
         <Route path="/dashboard/:businessID" element={<Dashboard />}>
           <Route path=":view" element={<DashboardView />} />

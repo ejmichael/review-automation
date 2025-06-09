@@ -14,7 +14,11 @@ const businessInfoSchema = new mongoose.Schema({
   facebook: { type: String,  },
   googlePlaceId: { type: String, unique: true, required: true },
   reviews: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Review' }],
-  profilePicture: { type: String }
+  profilePicture: { type: String },
+  isPaid: {
+    type: Boolean,
+    default: false
+  }
 }, { timestamps: true });
 
 module.exports = mongoose.model('BusinessInfo', businessInfoSchema);
