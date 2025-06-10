@@ -20,11 +20,12 @@ exports.initiateSubscription = (req, res) => {
   
 
   const data = {
-    merchant_id: process.env.PAYFAST_MERCHANT_ID,
-    merchant_key: process.env.PAYFAST_MERCHANT_KEY,
-    return_url: process.env.RETURN_URL,
-    cancel_url: process.env.CANCEL_URL,
-    notify_url: process.env.NOTIFY_URL,
+    merchant_id: "10000100",
+    merchant_key: "46f0cd694581a",
+    // merchant_key: process.env.PAYFAST_MERCHANT_KEY,
+    return_url: "https://review-automation.onrender.com/success",
+    cancel_url: "https://review-automation.onrender.com/cancel",
+    notify_url: "https://review-automation-backend.onrender.com/api/payfast/notify",
     m_payment_id: paymentRef,
     amount: 199.00,
     item_name: "Monthly Subscription",
@@ -41,7 +42,8 @@ exports.initiateSubscription = (req, res) => {
 
   data.signature = generateSignature(data, "1lovePamlyn4ever");
 
-  const redirectUrl = `https://www.payfast.co.za/eng/process?${qs.stringify(data)}`;
+  const redirectUrl = `https://sandbox.payfast.co.za/eng/process?${qs.stringify(data)}`;
+  // const redirectUrl = `https://www.payfast.co.za/eng/process?${qs.stringify(data)}`;
 
   return res.status(200).json({
     redirectUrl,

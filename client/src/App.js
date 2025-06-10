@@ -9,6 +9,8 @@ import Landing from './pages/Landing';
 import TermsAndConditions from './pages/TermsAndConditions';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import Payment from './pages/Payment';
+import PaymentCancelled from './pages/paymentURLs/PaymentCancelled';
+import PaymentSuccess from './pages/paymentURLs/PaymentSuccess';
 
 function App() {
   return (
@@ -19,6 +21,8 @@ function App() {
         <Route exact path="/login" element={<Login/>}/>
         <Route exact path="/register" element={<Register/>}/>
         <Route exact path="/payment" element={<Payment/>}/>
+        <Route path="/success" element={<PaymentSuccess />} />
+        <Route path="/cancel" element={<PaymentCancelled />} /> 
         {/* <Route  path="/dashboard/:businessID" element={<Dashboard/>}/> */}
         <Route path="/dashboard/:businessID" element={<Dashboard />}>
           <Route path=":view" element={<DashboardView />} />

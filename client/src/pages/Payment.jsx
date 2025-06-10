@@ -6,7 +6,7 @@ const Payment = () => {
 
   const domain = window.location.href.includes("localhost")
     ? "http://localhost:5000"
-    : "https://review-automation.onrender.com"; // Replace with actual backend domain
+    : "https://review-automation-backend.onrender.com"; // Replace with actual backend domain
 
   const initiateSubscription = async () => {
     setLoading(true);
