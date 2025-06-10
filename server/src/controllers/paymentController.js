@@ -1,43 +1,66 @@
-// routes/payfast.js
-import express from 'express';
-import crypto from 'crypto';
-import qs from 'querystring';
-const router = express.Router();
+const qs = require("qs");
+const crypto = require("crypto");
+const { v4: uuidv4 } = require("uuid");
+require("dotenv").config();
 
-router.post('/payfast/subscribe', (req, res) => {
-  const { businessID, email } = req.body;
+// Generate signature for PayFast request
+const generateSignature = (params, passphrase) => {
+  const string = qs.stringify(params, { encode: false });
+  const finalString = passphrase ? `${string}&passphrase=${passphrase}` : string;
+  return crypto.createHash("md5").update(finalString).digest("hex");
+};
+
+// Initiate PayFast subscription
+exports.initiateSubscription = (req, res) => {
+
+  const { email, name } = req.body;
+  const paymentRef = uuidv4();
+
+  console.log(email, name);
+  
 
   const data = {
     merchant_id: process.env.PAYFAST_MERCHANT_ID,
     merchant_key: process.env.PAYFAST_MERCHANT_KEY,
-    return_url: `https://yourfrontend.com/dashboard/${businessID}/home`,
-    cancel_url: `https://yourfrontend.com/cancel`,
-    notify_url: `https://yourbackend.com/payfast/ipn`,
-
-    name_first: 'Business',
+    return_url: process.env.RETURN_URL,
+    cancel_url: process.env.CANCEL_URL,
+    notify_url: process.env.NOTIFY_URL,
+    m_payment_id: paymentRef,
+    amount: 199.00,
+    item_name: "Monthly Subscription",
+    name_first: name || "Subscriber",
     email_address: email,
-    m_payment_id: businessID, // used to track the business
-    amount: '199.00', // upfront payment
-    item_name: 'Review Automation Subscription',
+
+    // Subscription fields
     subscription_type: 1,
-    billing_date: new Date().toISOString().split('T')[0],
-    recurring_amount: '199.00',
-    frequency: 3, // monthly
-    cycles: 0, // unlimited
+    billing_date: new Date().toISOString().split("T")[0],
+    recurring_amount: 199.00,
+    frequency: 3, // 3 = Monthly
+    cycles: 0 // Infinite
   };
 
-  let query = qs.stringify(data).replace(/%20/g, '+');
-
-  if (process.env.PAYFAST_PASSPHRASE) {
-    query += `&passphrase=${process.env.PAYFAST_PASSPHRASE}`;
-  }
-
-  const signature = crypto.createHash('md5').update(query).digest('hex');
-  data.signature = signature;
+  data.signature = generateSignature(data, "1lovePamlyn4ever");
 
   const redirectUrl = `https://www.payfast.co.za/eng/process?${qs.stringify(data)}`;
-  res.json({ redirectUrl });
-});
 
-export default router;
-zxzzzx
+  return res.status(200).json({
+    redirectUrl,
+    paymentReference: paymentRef,
+  });
+};
+
+// Handle PayFast notify URL
+exports.handleSubscriptionNotify = (req, res) => {
+  // TODO: Validate PayFast response here
+  const { payment_status, m_payment_id, custom_str1 } = req.body;
+  console.log("PayFast Subscription Notification:", req.body);
+
+  if (payment_status === "COMPLETE") {
+    console.log(`✅ Subscription complete for ${m_payment_id}`);
+    // Activate business in your DB
+  } else {
+    console.log(`⚠️ Payment status: ${payment_status}`);
+  }
+
+  res.status(200).send("OK");
+};

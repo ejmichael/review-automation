@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { initiateSubscription, handleSubscriptionNotify } = require("../controllers/payfastController");
+const { initiateSubscription, handleSubscriptionNotify } = require("../controllers/paymentController");
 
 const payfastRouter = express.Router()
 
