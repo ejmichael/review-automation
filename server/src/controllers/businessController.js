@@ -4,6 +4,8 @@ const BusinessInfo = require('../models/businessInfoModel')
 const createBusiness = async(req, res) => {
 
     const { 
+        firstName, 
+        lastName, 
         businessName, 
         description, 
         buildingNumber,
@@ -31,6 +33,8 @@ const createBusiness = async(req, res) => {
 
     try {
         const business = await BusinessInfo.create({
+            firstName, 
+            lastName, 
             businessName, 
             description,
             buildingName, 
@@ -45,13 +49,14 @@ const createBusiness = async(req, res) => {
             facebook,
             googlePlaceId,
             reviews: [],
-            profilePicture
+            profilePicture,
+            isPaid: false
         });
 
         if(business) {
-            console.log("Created");
+            console.log("Business Created");
             
-            return res.status(201).json({message:"created", business})
+            return res.status(201).json({message:"Business Created", business})
         }   
     } catch (error) {
         return res.status(500).json({ message: error.message }); 

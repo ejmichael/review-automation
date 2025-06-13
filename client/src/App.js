@@ -17,7 +17,7 @@ import Navbar from '../src/components/landingComps/navbar/Navbar'
 function App() {
   return (
     <div className="App">
-      <Navbar/>
+     
       <Routes>
         <Route exact path="/" element={<Landing/>}/>
         <Route exact path="/pricing" element={<Pricing/>}/>

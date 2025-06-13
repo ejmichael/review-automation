@@ -10,7 +10,7 @@ const payfastRouter = express.Router()
   //IPN Test
 
   const merchantKey = 'xty3ticuu2gup';  // Replace with your sandbox merchant key
-const merchantId = '26051467';
+  const merchantId = '26051467';
 
   payfastRouter.post('/ipn', async (req, res) => {
   const pfData = req.body;

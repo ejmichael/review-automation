@@ -6,6 +6,7 @@ import EssentialTools from '../components/landingComps/essential-tools/Essential
 import FAQs from '../components/landingComps/faqs/FAQs'
 import CaseStudies from '../components/landingComps/case-studies/CaseStudies'
 import ReactGA from 'react-ga4'
+import Navbar from '../components/landingComps/navbar/Navbar'
 
 const Landing = () => {
 
@@ -16,6 +17,8 @@ const Landing = () => {
     title: `Home`,
   });
   return (
+    <>
+     <Navbar/>
     <div className="">
         <Hero />
 
@@ -30,6 +33,8 @@ const Landing = () => {
         <FAQs />
 
     </div>
+    </>
+    
   )
 }
 
