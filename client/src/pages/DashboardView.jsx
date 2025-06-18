@@ -19,7 +19,7 @@ const DashboardView = () => {
         //console.log("Fetching business data");
         
         try {
-          const businessData = await axios.get(`${domain}/business/${businessID}`)
+          const businessData = await axios.get(`${domain}/business/get-business-info/${businessID}`)
           console.log(businessData.data);
           
           setBusinessInfo(businessData.data)

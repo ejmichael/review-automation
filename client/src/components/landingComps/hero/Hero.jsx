@@ -16,7 +16,7 @@ const Hero = () => {
         </div>
         <div>
           {/* <p className="mb-4 italic">Limited-time offer: lifetime access for a one-time payment.</p> */}
-          <Link to="https://review-automation.onrender.com/register">
+          <Link to="https://review-automation.onrender.com/register?plan=growth">
             <button className="mb-4 py-2 px-5 border border-indigo-800 bg-indigo-600 rounded-3xl text-white hover:text-blue-800 hover:bg-white transition">
               START TODAY - 75% OFF!
             </button>

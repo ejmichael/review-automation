@@ -1,9 +1,10 @@
 const express = require('express');
-const {createBusiness, getBusinessInfo} = require('../controllers/businessController')
+const {createBusiness, getBusinessInfo, loginBusiness} = require('../controllers/businessController')
 
 const businessRouter = express.Router();
 
 businessRouter.post('/create', createBusiness);
-businessRouter.get('/:businessId', getBusinessInfo);
+businessRouter.post('/login', loginBusiness);
+businessRouter.get('/get-business-info/:businessID', getBusinessInfo);
 
 module.exports = businessRouter;

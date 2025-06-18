@@ -20,6 +20,10 @@ const businessInfoSchema = new mongoose.Schema({
   isPaid: {
     type: Boolean,
     default: false
+  },
+  password: {
+    type: String,
+    required: true
   }
 }, { timestamps: true });
 

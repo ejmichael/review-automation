@@ -17,7 +17,7 @@ const Payment = () => {
 
   // Subscription details state (editable if needed)
   const [subscriptionDetails, setSubscriptionDetails] = useState({
-    amount: "100.00",
+    amount: "780.00",
     itemName: "Google Review Automation",
     returnUrl: "https://review-automation.onrender.com/success",
     cancelUrl: "https://review-automation.onrender.com/success",
