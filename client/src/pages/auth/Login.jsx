@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useLogin } from '../../hooks/useLogin';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useAuthContext } from '../../hooks/useAuthContext';
 
 const Login = () => {
 
@@ -9,7 +10,17 @@ const Login = () => {
     emailAddress: '',
     password: ''
   })
-      const navigate = useNavigate()
+  
+  const { user } = useAuthContext()  
+  
+    useEffect(() => {
+        if(user) {
+            navigate(`/dashboard/${user?.business._id}`)
+        }
+
+    }, [user])
+
+  const navigate = useNavigate()
 
   const handleFormChange = (e) => {
     setFormData((prevState) => ({
@@ -65,11 +76,17 @@ const Login = () => {
                             <div className="my-2">
                                 <input type="password" className="border p-2 w-full" name="password" value={formData.password} placeholder="Password" onChange={handleFormChange} />
                             </div>
-                            <div className="my-4 text-right">
-                                <button disabled={isLoading} type="button" onClick={handleSubmit} className="bg-blue-600 text-white px-4 py-2 rounded-full hover:bg-blue-700">Login</button>
+                            <div className="my-4 text-right ">
+                                <button disabled={isLoading} type="button" onClick={handleSubmit} className="w-full bg-blue-600 text-white px-4 py-2 rounded-full hover:bg-blue-700">Login</button>
                             </div>
+                            <Link to='/register'>
+                              <button className='text-blue-700 hover:underline cursor-pointer'>Create account</button>
+                            </Link>
                         </div>
+                        
                   </form>
+
+                  
 
                 </div>
             </div>

@@ -20,8 +20,8 @@ const Payment = () => {
     amount: "780.00",
     itemName: "Google Review Automation",
     returnUrl: "https://review-automation.onrender.com/success",
-    cancelUrl: "https://review-automation.onrender.com/success",
-    notifyUrl: "https://www.bloodsugartracker.co.za/notify",
+    cancelUrl: "https://review-automation.onrender.com/cancel",
+    notifyUrl: "https://review-automation-backend.onrender.com/api/payfast/notify",
   });
 
   // User info state (pre-filled from URL)

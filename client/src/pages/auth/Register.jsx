@@ -1,7 +1,8 @@
 import axios from 'axios'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate, useLocation  } from 'react-router-dom';
 import { useRegister } from '../../hooks/useRegister';
+import { useAuthContext } from '../../hooks/useAuthContext';
 
 const Register = () => {
 
@@ -17,6 +18,15 @@ const Register = () => {
 
     const nextStep = () => setStep((prev) => Math.min(prev + 1, 3));
     const prevStep = () => setStep((prev) => Math.max(prev - 1, 1));
+
+      const { user } = useAuthContext()      
+      
+        useEffect(() => {
+            if(user) {
+                navigate(`/dashboard/${user?.business._id}`)
+            }
+    
+        }, [user])
 
     const [formData, setFormData] = useState({
         firstName: '', 

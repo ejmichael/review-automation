@@ -1,9 +1,22 @@
 import React from 'react';
-import { NavLink, useParams } from 'react-router-dom';
+import { NavLink, useNavigate, useParams } from 'react-router-dom';
+import { useLogout } from '../hooks/useLogout';
+import { useAuthContext } from '../hooks/useAuthContext';
 
 const Sidebar = () => {
 
       const {businessID} = useParams();
+
+      const { logout }  = useLogout()
+
+    const { user } = useAuthContext()
+
+    const navigate = useNavigate()
+      
+    const onLogout = () => {
+        logout()
+        navigate('/login')
+    }
 
   return (
     <div className="w-1/5 bg-white p-4 fixed h-full">
@@ -52,6 +65,9 @@ const Sidebar = () => {
           QR- Manager
         </NavLink>
       </nav>
+      <button onClick={onLogout}>
+          Logout
+      </button>
     </div>
   );
 };
