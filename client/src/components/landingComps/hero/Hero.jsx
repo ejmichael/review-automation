@@ -5,13 +5,21 @@ import { Link } from 'react-router-dom';
 const Hero = () => {
   return (
     <div className="lg:min-h-[87vh] bg-gradient-to-tl from-blue-200 via-indigo-100 to-white grid grid-cols-2 p-3 items-center content-center">
-      <div className="mx-auto gap-6 flex flex-col content-center justify-center p-2 lg:max-w-2xl md:col-span-1 col-span-2">
-        <div className="mb-4 my-4 md:my-1">
+      <div className="mx-auto gap-6 flex flex-col text-left content-center justify-center p-2 lg:max-w-2xl md:col-span-1 col-span-2">
+        <div className="mb-4 my-4 md:my-1 ">
           <p className="xl:text-6xl lg:text-4xl text-4xl font-bold mb-4">
-<span className="text-indigo-600">Automate Reviews</span>, <span className="text-indigo-600">Capture Leads</span>, and <span className="text-indigo-600">Grow with SMS & Email</span> — all in one platform.          </p>
-          <p>
-            Turn your happy customers into 5-star reviews — without chasing or manual effort. 
-            Our automation tool sends personalized SMS and email review requests on your behalf.
+            <span>
+              Automate <span className='text-indigo-600'> 5-star reviews.</span>
+            </span>
+            <br/>
+            <span>
+              Get <span className='text-indigo-600'>  more customers.</span>
+            </span>
+          </p>
+          <p className='text-xl font-semibold'>
+            Turn your happy customers into 5-star Google reviews. 
+            <br/>
+            Get new customers and get old ones coming back.
           </p>
         </div>
         <div>

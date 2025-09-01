@@ -25,9 +25,9 @@ const EssentialTools = () => {
                 Automatically capture leads from reviews and forms. Segment contacts based on behavior or source for hyper-targeted follow-ups and future campaigns.
               </p>
             </div>
-            <div className='relative w-fit m-auto'>
+            {/* <div className='relative w-fit m-auto'>
               <img src={Graph} alt="Smart Lead Capture" className="block max-h-[250px] rounded-lg" />
-            </div>
+            </div> */}
           </div>
           
           {/* Block 2: SMS + Email Campaigns */}
@@ -40,9 +40,9 @@ const EssentialTools = () => {
                 Launch SMS and email campaigns with personalized content at scale. Perfect for promotions, reminders, and driving reviews or repeat sales.
               </p>
             </div>
-            <div className='relative w-fit m-auto'>
+            {/* <div className='relative w-fit m-auto'>
               <img src={Contacts} alt="Bulk Messaging Tool" className="block max-h-[250px] rounded-lg" />
-            </div>
+            </div> */}
           </div>
           
           {/* Block 3: Revenue Growth */}

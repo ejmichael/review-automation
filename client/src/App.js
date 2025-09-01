@@ -13,6 +13,7 @@ import Payment from './pages/Payment';
 import PaymentCancelled from './pages/paymentURLs/PaymentCancelled';
 import PaymentSuccess from './pages/paymentURLs/PaymentSuccess';
 import Navbar from '../src/components/landingComps/navbar/Navbar'
+import Footer from './components/landingComps/footer/Footer';
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
         <Route path="/terms-and-conditions" element={<TermsAndConditions/>}/>
         <Route path="/privacy-policy" element={<PrivacyPolicy/>}/>
       </Routes>
+      <Footer/>
     </div>
   );
 }

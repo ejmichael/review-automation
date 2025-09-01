@@ -1,73 +1,53 @@
-import Insta from '../../assets/insta.png'
-import Facebook from '../../assets/facebook.png'
-import LinkedIn from '../../assets/linkedIn.png'
+import Insta from '../../../assets/insta.png'
+import Facebook from '../../../assets/facebook.png'
+import LinkedIn from '../../../assets/linkedIn.png'
 import { Link } from 'react-router-dom'
 
 const Footer = () => {
   return (
-    <div className="p-4 bg-white border-t border-slate-300">
-        <div className="mb-6">
-            <div className='p-4'>
-                <Link to='/'>
-                    <p className="text-indigo-600 lg:text-2xl text-2xl font-semibold flex items-center"><span  className="text-2xl">E</span>asy <span className="text-2xl">O</span>utreach</p>
-                </Link>
-            </div>
-            <div className="grid md:grid-cols-5 px-4 gap-4">
-                {/* <div className="grid xs:col-span-2 md:col-span-3 sm:grid-cols-3 gap-4 md:order-1 order-2">
-                    <div className="col-span-1 mb-2">
-                        <p className="font-medium mb-2">Platform</p>
-                        <p className='text-gray-500 py-2'>
-                            <button>
-                                <Link to='/solutions'>Solutions</Link>
-                            </button>
-                        </p>
-                        <p className='text-gray-500 py-2'>Tutorials</p>
-                    </div>
-                    <div className="col-span-1  mb-2">
-                        <p className="font-medium mb-2">Resources</p>
-                        <p className='text-gray-500 py-2'>Knowledge Base</p>
-                        <p className='text-gray-500 py-2'>Success Strories</p>
-                    </div>
-                    <div className="col-span-1  mb-2">
-                        <p className="font-medium mb-2">Company</p>
-                        <p className='text-gray-500 py-2'>About Easy Outreach</p>
-                        <p className='text-gray-500 py-2'>Privacy Center</p>
-                    </div>
-                </div> */}
-                <div className="col-span-1  mb-2">
-                    <p className="font-medium mb-2">Find us on social media</p>
-                    <div className="flex gap-1">
-                        <img className="max-w-[30px]" src={LinkedIn} alt="LinkedIn profile" />
-                        <img className="max-w-[30px]" src={Facebook} alt="Facebook profile" />
-                        <img className="max-w-[30px]" src={Insta} alt="Instagram profile" />
-                    </div>
-                </div>
-                <div className="flex flex-col gap-3 col-span-1 md:order-3">
-                    <div >
-                        <div>
-                            <p className="font-medium mb-2">Address</p>
-                        </div>
-                        <div>
-                            <p>Sandton, 2191</p>
-                            <p>South Africa</p>
-                        </div>
-                    </div>
-                    <div>
-                        <div>
-                            <p className='font-medium mb-2'>Inquiries</p>
-                        </div>
-                        <div>
-                            <p>+27 76 251 9918</p>
-                            <p>hello@easyoutreach.io</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <footer className="bg-white border-t border-slate-300">
+      <div className="max-w-6xl mx-auto px-6 py-10 grid md:grid-cols-3 gap-8 text-center md:text-left">
+        
+        {/* Brand */}
+        <div>
+          <Link to="/">
+            <p className="text-indigo-600 text-2xl font-bold">
+              Easy<span className="text-gray-800">Outreach</span>
+            </p>
+          </Link>
+          <p className="text-gray-500 mt-2 text-sm">
+            Helping businesses collect more reviews & repeat customers on autopilot.
+          </p>
         </div>
-        <div className="p-4 border-t-2 text-center">
-            <p className="px-4 my-2">Copyright 2024.</p>
+
+        {/* Quick Links */}
+        <div>
+          <p className="font-semibold text-gray-800 mb-3">Quick Links</p>
+          <ul className="space-y-2 text-gray-500 text-sm">
+            <li><Link to="/solutions" className="hover:text-indigo-600">Solutions</Link></li>
+            <li><Link to="/pricing" className="hover:text-indigo-600">Pricing</Link></li>
+            <li><Link to="/contact" className="hover:text-indigo-600">Contact</Link></li>
+          </ul>
         </div>
-    </div>
+
+        {/* Contact & Social */}
+        <div>
+          <p className="font-semibold text-gray-800 mb-3">Get in Touch</p>
+          <p className="text-gray-500 text-sm">hello@easyoutreach.io</p>
+          <p className="text-gray-500 text-sm mb-3">+27 76 251 9918</p>
+          <div className="flex justify-center md:justify-start gap-3 mt-2">
+            <a href="#"><img className="w-6 h-6" src={LinkedIn} alt="LinkedIn" /></a>
+            <a href="#"><img className="w-6 h-6" src={Facebook} alt="Facebook" /></a>
+            <a href="#"><img className="w-6 h-6" src={Insta} alt="Instagram" /></a>
+          </div>
+        </div>
+      </div>
+
+      {/* Copyright */}
+      <div className="border-t border-slate-200 py-4 text-center text-gray-500 text-sm">
+        © {new Date().getFullYear()} EasyOutreach. All rights reserved.
+      </div>
+    </footer>
   )
 }
 
