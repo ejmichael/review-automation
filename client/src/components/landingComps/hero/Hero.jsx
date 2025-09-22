@@ -1,44 +1,51 @@
 import React from 'react';
-import HeroImg from '../../../assets/Email campaign-cuate.png';
+import HeroImg from '../../../assets/hero-option.jpg';
 import { Link } from 'react-router-dom';
 
 const Hero = () => {
   return (
-    <div className="lg:min-h-[87vh] bg-gradient-to-tl from-blue-200 via-indigo-100 to-white grid grid-cols-2 p-3 items-center content-center">
-      <div className="mx-auto gap-6 flex flex-col text-left content-center justify-center p-2 lg:max-w-2xl md:col-span-1 col-span-2">
-        <div className="mb-4 my-4 md:my-1 ">
-          <p className="xl:text-6xl lg:text-4xl text-4xl font-bold mb-4">
-            <span>
-              Automate <span className='text-indigo-600'> 5-star reviews.</span>
-            </span>
-            <br/>
-            <span>
-              Get <span className='text-indigo-600'>  more customers.</span>
-            </span>
+    <div className="bg-gray-50 w-full md:min-h-[87vh] flex flex-col-reverse md:flex-row items-center">
+
+      {/* Right Text Section (on desktop) */}
+      <div className="flex flex-col justify-center md:w-1/2 w-full px-6 lg:px-16 md:py-12 py-4 lg:py-0 space-y-6">
+        <div>
+          <p className="text-3xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight text-left md:text-center">
+            Automate <span className="text-indigo-600">5-star reviews.</span>
+            <br />
+            Grow <span className="text-indigo-600">on Google.</span>
+            <br />
+            Get <span className="text-indigo-600">more customers.</span>
           </p>
-          <p className='text-xl font-semibold'>
-            Turn your happy customers into 5-star Google reviews. 
-            <br/>
+          <p className="text-lg md:text-xl font-semibold">
+            Turn your happy customers into 5-star Google reviews.
+            <br />
             Get new customers and get old ones coming back.
           </p>
         </div>
+
         <div>
-          {/* <p className="mb-4 italic">Limited-time offer: lifetime access for a one-time payment.</p> */}
-          <Link to="https://review-automation.onrender.com/register?plan=growth">
-            <button className="mb-4 py-2 px-5 border border-indigo-800 bg-indigo-600 rounded-3xl text-white hover:text-blue-800 hover:bg-white transition">
-              START TODAY - 75% OFF!
+          <Link to="/how-does-review-automation-work">
+            <button className="mb-4 py-3 px-6 border border-indigo-800 bg-indigo-600 rounded-3xl text-white hover:text-blue-800 hover:bg-white transition">
+              See How It Works
             </button>
           </Link>
-          <p className="text-xs">Offer expires July 30, 2025 — secure your spot now.</p>
+          <p className="text-xs">Offer expires November 30, 2025 — secure your spot now.</p>
         </div>
       </div>
-      <div className="md:col-span-1 col-span-2">
+
+      {/* Left Image Section (on mobile appears first) */}
+      <div className="md:w-1/2 w-full flex justify-center items-center relative h-[400px] md:h-full px-6 lg:px-0 md:mb-8 mb-4 md:mb-0">
+        {/* Bubble Background */}
+        <div className="absolute w-[90%] md:h-[90%] h-[70%] bg-gradient-to-tr from-indigo-200 to-blue-300 rounded-[50%] blur-3xl opacity-70 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></div>
+
+        {/* Full Image */}
         <img
           src={HeroImg}
-          alt="Automated Google Review Campaigns"
-          className="lg:w-[80%] w-[90%] mx-auto"
+          alt="Happy Customer"
+          className="relative w-full h-full object-cover rounded-[2rem] shadow-2xl"
         />
       </div>
+
     </div>
   );
 };

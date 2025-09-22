@@ -14,6 +14,7 @@ import PaymentCancelled from './pages/paymentURLs/PaymentCancelled';
 import PaymentSuccess from './pages/paymentURLs/PaymentSuccess';
 import Navbar from '../src/components/landingComps/navbar/Navbar'
 import Footer from './components/landingComps/footer/Footer';
+import HowItWorks from './pages/HowItWorks';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
      
       <Routes>
         <Route exact path="/" element={<Landing/>}/>
+        <Route exact path="/how-does-review-automation-work" element={<HowItWorks/>}/>
         <Route exact path="/pricing" element={<Pricing/>}/>
         <Route exact path="/review/:businessID" element={<ReviewPage/>}/>
         <Route exact path="/login" element={<Login/>}/>

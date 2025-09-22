@@ -7,6 +7,7 @@ import FAQs from '../components/landingComps/faqs/FAQs'
 import CaseStudies from '../components/landingComps/case-studies/CaseStudies'
 import ReactGA from 'react-ga4'
 import Navbar from '../components/landingComps/navbar/Navbar'
+import Pricing from '../components/landingComps/pricing/Pricing'
 
 const Landing = () => {
 
@@ -22,11 +23,11 @@ const Landing = () => {
     <div className="">
         <Hero />
 
-        <Partners/>
+        {/* <Partners/> */}
 
         <ThreeBlocks />
 
-        <EssentialTools />
+        <Pricing />
 
         <CaseStudies/>
 

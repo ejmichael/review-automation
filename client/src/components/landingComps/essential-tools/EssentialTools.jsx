@@ -6,72 +6,74 @@ import Orders from '../../../assets/orders-mock.PNG';
 
 const EssentialTools = () => {
   return (
-    <div className='w-full bg-white md:py-4 lg:py-6 mb-10'>
-      <div className='md:max-w-[90%] m-auto'>
-        <div className='text-center m-10'>
-          <p className='text-4xl font-bold mb-2'>Essential Tools to Automate & Scale Your Growth</p>
-          <p>All-in-one review, lead generation, SMS, and email tools to grow your business faster</p>
+    <div className="w-full bg-white md:py-8 lg:py-12 mb-10">
+      <div className="md:max-w-[90%] m-auto">
+        {/* Section Header */}
+        <div className="text-center mb-12">
+          <p className="text-4xl font-bold mb-2">
+            Tools That Turn Happy Customers Into Business Growth
+          </p>
+          <p className="text-lg text-gray-600">
+            Automate reviews, connect with customers, and boost revenue - all from one simple platform.
+          </p>
         </div>
 
-        <div className='grid lg:grid-cols-2 xs:grid-cols-1 lg:mx-10 mx-6 gap-6'>
+        {/* Grid */}
+        <div className="grid lg:grid-cols-2 xs:grid-cols-1 lg:mx-10 mx-6 gap-8">
           
           {/* Block 1: Lead Generation */}
-          <div className='col-span-1 rounded-[35px] p-8 bg-indigo-100'>
-            <div className='mb-3'>
-              <p className="font-bold text-xl">Smart Lead Capture & Segmentation</p>
-            </div>
-            <div className='mb-5'>
-              <p className='font-semibold'>
-                Automatically capture leads from reviews and forms. Segment contacts based on behavior or source for hyper-targeted follow-ups and future campaigns.
+          <div className="col-span-1 rounded-[25px] p-8 bg-indigo-100 flex flex-col justify-between min-h-[320px]">
+            <div>
+              <p className="font-bold text-xl mb-3">Capture & Segment Every Lead</p>
+              <p className="font-medium text-gray-700">
+                Collect customer details automatically from reviews, forms, and campaigns. 
+                Segment them into lists for smarter, more effective follow-ups.
               </p>
             </div>
-            {/* <div className='relative w-fit m-auto'>
-              <img src={Graph} alt="Smart Lead Capture" className="block max-h-[250px] rounded-lg" />
-            </div> */}
+            <div className="relative w-fit mt-6">
+              <img src={Graph} alt="Lead Capture & Segmentation" className="block max-h-[200px] rounded-lg" />
+            </div>
           </div>
           
           {/* Block 2: SMS + Email Campaigns */}
-          <div className='col-span-1 rounded-[35px] p-8 bg-indigo-100'>
-            <div className='mb-3'>
-              <p className="font-bold text-xl">Mass Messaging That Feels Personal</p>
-            </div>
-            <div className='mb-5'>
-              <p className='font-semibold'>
-                Launch SMS and email campaigns with personalized content at scale. Perfect for promotions, reminders, and driving reviews or repeat sales.
+          <div className="col-span-1 rounded-[25px] p-8 bg-indigo-100 flex flex-col justify-between min-h-[320px]">
+            <div>
+              <p className="font-bold text-xl mb-3">Personalized SMS & Email at Scale</p>
+              <p className="font-medium text-gray-700">
+                Send bulk messages that feel 1-to-1. Perfect for promotions, reminders, 
+                and driving both reviews and repeat sales.
               </p>
             </div>
-            {/* <div className='relative w-fit m-auto'>
-              <img src={Contacts} alt="Bulk Messaging Tool" className="block max-h-[250px] rounded-lg" />
-            </div> */}
+            <div className="relative w-fit mt-6">
+              <img src={Contacts} alt="Messaging Tool" className="block max-h-[200px] rounded-lg" />
+            </div>
           </div>
           
           {/* Block 3: Revenue Growth */}
-          <div className='col-span-1 rounded-[35px] p-8 bg-indigo-100'>
-            <div className='mb-3'>
-              <p className="font-bold text-xl">Turn Messages Into Sales</p>
-            </div>
-            <div className='mb-5'>
-              <p className='font-semibold'>
-                Drive more revenue by sending the right offer at the right time. Our platform helps you nurture leads and convert them into paying customers automatically.
+          <div className="col-span-1 rounded-[25px] p-8 bg-indigo-100 flex flex-col justify-between min-h-[320px]">
+            <div>
+              <p className="font-bold text-xl mb-3">Turn Conversations Into Sales</p>
+              <p className="font-medium text-gray-700">
+                Send the right offer at the right time. From flash promos to reactivation campaigns,
+                our automation helps you win back customers and grow revenue hands-free.
               </p>
             </div>
-            <div className='relative w-fit m-auto'>
-              <img src={Orders} alt="Revenue Growth Dashboard" className="block max-h-[250px] rounded-lg" />
+            <div className="relative w-fit mt-6">
+              <img src={Orders} alt="Revenue Growth Dashboard" className="block max-h-[200px] rounded-lg" />
             </div>
           </div>
           
-          {/* Block 4: Brand Presence */}
-          <div className='col-span-1 rounded-[35px] p-8 bg-indigo-100'>
-            <div className='mb-3'>
-              <p className="font-bold text-xl">Amplify Your Online Presence</p>
-            </div>
-            <div className='mb-5'>
-              <p className='font-semibold'>
-                Get more 5-star reviews and stay top of mind with consistent messaging. Build trust and visibility across Google, email, and SMS channels.
+          {/* Block 4: Reputation & Visibility */}
+          <div className="col-span-1 rounded-[25px] p-8 bg-indigo-100 flex flex-col justify-between min-h-[320px]">
+            <div>
+              <p className="font-bold text-xl mb-3">Build a 5-Star Reputation</p>
+              <p className="font-medium text-gray-700">
+                Automate review requests, get more 5-star ratings, and increase your visibility 
+                on Google — while keeping your brand top of mind with customers.
               </p>
             </div>
-            <div className='relative w-fit m-auto'>
-              <img src={Comments} alt="Boost Brand Awareness" className="block max-h-[250px] rounded-lg" />
+            <div className="relative w-fit mt-6">
+              <img src={Comments} alt="Reputation & Reviews" className="block max-h-[200px] rounded-lg" />
             </div>
           </div>
 
