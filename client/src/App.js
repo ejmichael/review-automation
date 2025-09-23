@@ -27,7 +27,7 @@ function App() {
         <Route exact path="/about-us" element={<AboutUs/>}/>
         <Route exact path="/how-does-review-automation-work" element={<HowItWorks/>}/>
         <Route exact path="/pricing" element={<Pricing/>}/>
-        <Route exact path="/contact" element={<Contact/>}/>
+        <Route exact path="/contact-us" element={<Contact/>}/>
         <Route exact path="/review/:businessID" element={<ReviewPage/>}/>
         <Route exact path="/login" element={<Login/>}/>
         <Route exact path="/register" element={<Register/>}/>

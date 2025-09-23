@@ -6,10 +6,10 @@ const Contact = () => {
   return (
 <>  
     <Navbar/>
-    <div className="w-full bg-gray-50 my-[65px]">
+    <div className="w-full bg-gray-50 mt-[65px]">
       {/* Hero Section */}
       <div className="text-center py-12 px-4">
-        <h1 className="text-4xl font-bold text-gray-800 mb-4">Get in Touch</h1>
+        <h1 className="text-4xl font-bold text-slate-800 mb-4">Get in Touch</h1>
         <p className="text-gray-600 max-w-2xl mx-auto">
           Have questions, want to learn more, or ready to get started? 
           Reach out to us today — we’d love to hear from you.
@@ -20,7 +20,7 @@ const Contact = () => {
       <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-10 px-6 pb-16">
         {/* Contact Info */}
         <div className="bg-white shadow-md rounded-2xl p-8">
-          <h2 className="text-2xl font-semibold mb-6 text-gray-800">Contact Information</h2>
+          <h2 className="text-2xl font-semibold mb-6 text-indigo-600">Contact Information</h2>
           <ul className="space-y-4 text-left text-gray-600">
             <li>
               <span className="font-medium text-gray-800">Email:</span> support@yourbusiness.com
@@ -41,7 +41,7 @@ const Contact = () => {
 
         {/* Contact Form */}
         <div className="bg-white shadow-md rounded-2xl md:p-8 p-4">
-          <h2 className="text-2xl font-semibold mb-6 text-gray-800">Send Us a Message</h2>
+          <h2 className="text-2xl font-semibold mb-6 text-indigo-600">Send Us a Message</h2>
           <form className="space-y-5">
             <div>
               <label className="block text-sm font-medium text-gray-700">Name</label>

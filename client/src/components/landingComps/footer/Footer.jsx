@@ -24,9 +24,9 @@ const Footer = () => {
         <div>
           <p className="font-semibold text-gray-800 mb-3">Quick Links</p>
           <ul className="space-y-2 text-gray-500 text-sm">
-            <li><Link to="/solutions" className="hover:text-indigo-600">Solutions</Link></li>
-            <li><Link to="/pricing" className="hover:text-indigo-600">Pricing</Link></li>
-            <li><Link to="/contact" className="hover:text-indigo-600">Contact</Link></li>
+            <li><Link to="/about-us" className="hover:text-indigo-600">About</Link></li>
+            <li><Link to="/how-does-review-automation-work" className="hover:text-indigo-600">How it works</Link></li>
+            <li><Link to="/contact-us" className="hover:text-indigo-600">Contact</Link></li>
           </ul>
         </div>
 
