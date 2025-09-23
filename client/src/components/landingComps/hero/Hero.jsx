@@ -1,10 +1,11 @@
 import React from 'react';
 import HeroImg from '../../../assets/hero-option.jpg';
+import HeroImg2 from '../../../assets/home-image.jpg';
 import { Link } from 'react-router-dom';
 
 const Hero = () => {
   return (
-    <div className="bg-gray-50 w-full md:min-h-[87vh] flex flex-col-reverse md:flex-row items-center">
+    <div className="bg-gray-50 w-full md:min-h-[87vh] flex flex-col-reverse md:flex-row items-center mt-[75px]">
 
       {/* Right Text Section (on desktop) */}
       <div className="flex flex-col justify-center md:w-1/2 w-full px-6 lg:px-16 md:py-12 py-4 lg:py-0 space-y-6">

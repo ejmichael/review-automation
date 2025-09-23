@@ -1,6 +1,7 @@
 import React from 'react';
 import { FaStar, FaQrcode, FaEnvelopeOpenText } from 'react-icons/fa';
 import { motion } from "framer-motion";
+import { Link } from 'react-router-dom';
 
 const ThreeBlocks = () => {
   const steps = [
@@ -57,7 +58,7 @@ const ThreeBlocks = () => {
           </div>
           <p className="text-sm font-bold text-indigo-600 uppercase mb-2">{step.step}</p>
           <h3 className="font-semibold text-xl mb-3">{step.title}</h3>
-          <p className="text-gray-600">{step.description}</p>
+          <p className="text-gray-600 text-sm">{step.description}</p>
         </motion.div>
 
         {/* Dot on the center line */}
@@ -65,6 +66,14 @@ const ThreeBlocks = () => {
       </div>
     ))}
   </div>
+  <div>
+            <Link to="/how-does-review-automation-work">
+              <button className="mb-2 py-3 px-6 border border-indigo-800 bg-indigo-600 rounded-3xl text-white hover:text-blue-800 hover:bg-white transition">
+                See How It Works
+              </button>
+            </Link>
+            {/* <p className="text-xs">Offer expires November 30, 2025 — secure your spot now.</p> */}
+          </div>
 </section>
 
 

@@ -33,7 +33,7 @@ const Footer = () => {
         {/* Contact & Social */}
         <div>
           <p className="font-semibold text-gray-800 mb-3">Get in Touch</p>
-          <p className="text-gray-500 text-sm">hello@easyoutreach.io</p>
+          <p className="text-gray-500 text-sm">ethan@easy-outreach.com</p>
           <p className="text-gray-500 text-sm mb-3">+27 76 251 9918</p>
           <div className="flex justify-center md:justify-start gap-3 mt-2">
             <a href="#"><img className="w-6 h-6" src={LinkedIn} alt="LinkedIn" /></a>
