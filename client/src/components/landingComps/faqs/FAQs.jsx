@@ -47,17 +47,17 @@ const FAQs = () => {
     ];
 
     return (
-        <div className="bg-white py-8 lg:py-12">
+        <div className="bg-white py-12">
             <div className='md:max-w-[90%] m-auto'>
                 <div className='text-center mb-12'>
                     <h2 className='text-4xl font-bold mb-2'>Frequently Asked Questions</h2>
                     <p className='text-gray-700'>Everything you need to know about our review automation, lead generation, and SMS/email marketing services.</p>
                 </div>
-                <div className="mx-auto max-w-[80%] grid gap-5 p-6 rounded-xl">
+                <div className="mx-auto md:max-w-[80%] grid gap-5 p-6 rounded-xl">
                     {faqs.map(faq => (
                         <div key={faq.id} className='border-b border-slate-400 pb-3'>
                             <div className='cursor-pointer flex justify-between items-center' onClick={() => toggleAccordionItem(faq.id)}>
-                                <p className='text-indigo-600 text-2xl font-medium'>{faq.question}</p>
+                                <p className='text-indigo-600 text-2xl font-medium text-left w-[90%]'>{faq.question}</p>
                                 <IoAdd className='text-2xl text-indigo-600' />
                             </div>
                             <div className={`overflow-hidden transition-all duration-300 ${toggleItem === faq.id ? 'max-h-40 opacity-100 mt-2' : 'max-h-0 opacity-0'}`}>

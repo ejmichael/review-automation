@@ -48,9 +48,9 @@ const HowItWorks = () => {
     <Navbar/>
     <div className="w-full bg-gray-50 py-12 px-6 mt-[65px]">
       <div className="max-w-5xl mx-auto text-center mb-10">
-        <h1 className="text-4xl font-bold mb-4">How It Works</h1>
+        <h1 className="text-4xl font-bold mb-4">How the System Works</h1>
         <p className="text-lg text-gray-600">
-          From signup to success — here’s exactly how we help your business grow.
+          From signup to success - here’s exactly how we help your business grow.
         </p>
       </div>
 
@@ -58,7 +58,7 @@ const HowItWorks = () => {
         {steps.map((step, idx) => (
           <div
             key={idx}
-            className="flex-col align-center flex items-start space-x-6 bg-white shadow-md rounded-2xl p-6 hover:shadow-lg transition "
+            className="flex-col align-center flex items-start md:space-x-6 bg-white shadow-md rounded-2xl p-6 hover:shadow-lg transition "
           >
             <div className="flex-shrink-0 mx-auto text-center mb-2">{step.icon}</div>
             <div>

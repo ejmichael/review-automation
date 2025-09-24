@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 
 const Footer = () => {
   return (
-    <footer className="bg-white border-t border-slate-300">
+    <footer className="bg-white border-t border-slate-300 ">
       <div className="max-w-6xl mx-auto px-6 py-10 grid md:grid-cols-3 gap-8 text-center md:text-left">
         
         {/* Brand */}
@@ -45,7 +45,7 @@ const Footer = () => {
 
       {/* Copyright */}
       <div className="border-t border-slate-200 py-4 text-center text-gray-500 text-sm">
-        © {new Date().getFullYear()} EasyOutreach. All rights reserved.
+        © {new Date().getFullYear()} <span className='font-semibold'>EasyOutreach</span>. All rights reserved.
       </div>
     </footer>
   )

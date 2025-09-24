@@ -29,9 +29,9 @@ const ThreeBlocks = () => {
   ];
 
   return (
-<section className="relative w-full bg-gray-100 py-16 px-6">
+<section className="relative w-full bg-indigo-100 py-16 px-6">
   <div className="text-center mb-12">
-    <h2 className="text-4xl font-bold">How Our System Works</h2>
+    <h2 className="text-4xl font-bold">How the System Works</h2>
     <p className="mt-4 text-gray-700 max-w-2xl mx-auto">
       From reviews to repeat sales - everything you need in one simple process.
     </p>
@@ -69,7 +69,7 @@ const ThreeBlocks = () => {
   <div>
             <Link to="/how-does-review-automation-work">
               <button className="mb-2 py-3 px-6 border border-indigo-800 bg-indigo-600 rounded-3xl text-white hover:text-blue-800 hover:bg-white transition">
-                See How It Works
+                Learn more
               </button>
             </Link>
             {/* <p className="text-xs">Offer expires November 30, 2025 — secure your spot now.</p> */}

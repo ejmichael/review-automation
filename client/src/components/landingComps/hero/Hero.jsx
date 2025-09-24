@@ -5,12 +5,12 @@ import { Link } from 'react-router-dom';
 
 const Hero = () => {
   return (
-    <div className="bg-gray-50 w-full md:min-h-[87vh] flex flex-col-reverse md:flex-row items-center mt-[75px]">
+    <div className="bg-gray-50 w-full md:min-h-[87vh] flex flex-col-reverse md:flex-row items-center mt-[75px] pb-[50px]">
 
       {/* Right Text Section (on desktop) */}
       <div className="flex flex-col justify-center md:w-1/2 w-full px-6 lg:px-16 md:py-12 py-4 lg:py-0 space-y-6">
         <div>
-          <p className="text-3xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight text-left md:text-center">
+          <p className="text-3xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight text-center md:text-left md:text-center">
             Automate <span className="text-indigo-600">5-star reviews.</span>
             <br />
             Grow <span className="text-indigo-600">on Google.</span>
@@ -30,7 +30,7 @@ const Hero = () => {
               See How It Works
             </button>
           </Link>
-          <p className="text-xs">Offer expires November 30, 2025 — secure your spot now.</p>
+          {/* <p className="text-xs">Offer expires November 30, 2025 — secure your spot now.</p> */}
         </div>
       </div>
 

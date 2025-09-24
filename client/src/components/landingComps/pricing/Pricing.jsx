@@ -17,8 +17,9 @@ const Pricing = () => {
       price: "R1099/mo",
       features: [
         "Everything in Basic",
-        "Lead Generation ",
+        "Lead Generation",
         "Segment & Target Leads",
+        "Weekly SMS Ads",
         "Basic Analytics Insights",
       ],
       highlight: true,
