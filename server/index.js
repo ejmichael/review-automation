@@ -4,6 +4,7 @@ const reviewRouter = require('./src/routes/reviewRoute');
 const connectToMongoDB = require('./src/db');
 const businessRouter = require('./src/routes/businessRoute');
 const payfastRouter = require('./src/routes/payfastRoute');
+const contactFormRouter = require('./src/routes/contactFormRoute');
 const dotenv = require('dotenv').config();
  
 const app = express();
@@ -32,6 +33,7 @@ const app = express();
         app.use('/review', reviewRouter) 
         app.use('/business', businessRouter) 
         app.use('/api/payfast', payfastRouter)
+        app.use("/api", contactFormRouter);
           
 
         // Start the server
