@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Pricing = () => {
   const plans = [
@@ -11,6 +12,7 @@ const Pricing = () => {
         "Monthly Review Report and Analysis",
       ],
       highlight: false,
+      slug: "basic"
     },
     {
       name: "Growth",
@@ -19,21 +21,23 @@ const Pricing = () => {
         "Everything in Basic",
         "Lead Generation",
         "Segment & Target Leads",
-        "Weekly SMS Ads",
+        "Weekly SMS OR Email Ads",
         "Basic Analytics Insights",
       ],
       highlight: true,
+      slug: "growth"
     },
     {
       name: "Comprehensive",
       price: "R1499/mo",
       features: [
         "Everything in Growth",
-        "Email & SMS Campaigns",
+        "Weekly Email & SMS Ads",
         "Automated Marketing Workflows",
         "Full Analytics Dashboard",
       ],
       highlight: false,
+      slug: "comprehensive"
     },
   ];
 
@@ -50,7 +54,7 @@ const Pricing = () => {
       </div>
 
       {/* Pricing Grid */}
-      <div className="grid  md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+      <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
         {plans.map((plan, idx) => (
           <div 
             key={idx}
@@ -62,7 +66,7 @@ const Pricing = () => {
           >
             {/* Badge for highlight plan */}
             {plan.highlight && (
-              <div className="absolute p-3 top-[-8px]  right-[5px] bg-yellow-400 text-gray-900 text-xs font-semibold px-3 py-2 rounded-t-md shadow-md shadow-slate-600">
+              <div className="absolute p-3 top-[-8px] right-[5px] bg-yellow-400 text-gray-900 text-xs font-semibold px-3 py-2 rounded-t-md shadow-md shadow-slate-600">
                 Most Popular
               </div>
             )}
@@ -74,25 +78,24 @@ const Pricing = () => {
             {/* Features */}
             <ul className="mb-6 space-y-3 text-sm md:text-base">
               {plan.features.map((feature, fidx) => (
-                <li
-                  key={fidx}
-                  className="flex items-center justify-center gap-2"
-                >
+                <li key={fidx} className="flex items-center justify-center gap-2">
                   <span className="text-lime-300">✔</span> {feature}
                 </li>
               ))}
             </ul>
 
             {/* CTA Button */}
-            <button
-              className={`w-full py-3 rounded-xl font-semibold transition ${
-                plan.highlight
-                  ? "bg-white text-indigo-600 hover:bg-gray-100"
-                  : "bg-indigo-600 text-white hover:bg-indigo-700"
-              }`}
-            >
-              Start Today
-            </button>
+            <Link to={`/plan/${plan.slug}`} className="w-full">
+              <button
+                className={`w-full py-3 rounded-xl font-semibold transition ${
+                  plan.highlight
+                    ? "bg-white text-indigo-600 hover:bg-gray-100"
+                    : "bg-indigo-600 text-white hover:bg-indigo-700"
+                }`}
+              >
+                Start Today
+              </button>
+            </Link>
           </div>
         ))}
       </div>

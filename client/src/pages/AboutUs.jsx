@@ -13,13 +13,13 @@ const AboutUs = () => {
     {
       title: "What We Do",
       description:
-        "From review automation to SMS & email campaigns, we give your business the tools to build trust, generate leads, and boost revenue — all in one platform.",
+        "From review automation to SMS & email campaigns, we give your business the tools to build trust, generate leads, and boost revenue - all in one platform.",
       icon: <FaRocket className="text-indigo-600 text-3xl" />,
     },
     {
       title: "Why Choose Us",
       description:
-        "We make automation simple, affordable, and effective. Our done-for-you setup ensures you see results quickly — without needing a tech team or big budgets.",
+        "We make automation simple, affordable, and effective. Our done-for-you setup ensures you see results quickly - without needing a tech team or big budgets.",
       icon: <FaHandshake className="text-indigo-600 text-3xl" />,
     },
     {
@@ -36,9 +36,9 @@ const AboutUs = () => {
       <div className="w-full bg-gray-50 py-12 px-6 my-[65px]">
         {/* Hero */}
         <div className="max-w-5xl mx-auto text-center mb-12">
-          <h1 className="text-4xl font-bold mb-4">About EasyOutreach</h1>
+          <h1 className="text-4xl font-bold mb-4">About <span className="text-indigo-600">Easy</span> Reviews</h1>
           <p className="text-lg text-gray-600">
-            Your partner in automating reviews, marketing, and lead generation — so
+            Your partner in automating reviews, marketing, and lead generation - so
             you can focus on running your business.
           </p>
         </div>

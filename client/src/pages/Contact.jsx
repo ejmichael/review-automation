@@ -53,7 +53,7 @@ const Contact = () => {
         <div className="text-center py-12 px-4">
           <h1 className="text-4xl font-bold text-slate-800 mb-4">Get in Touch</h1>
           <p className="text-gray-600 max-w-2xl mx-auto">
-            Have questions, want to learn more, or ready to get started? Reach out to us today —
+            Have questions, want to learn more, or ready to get started? Reach out to us today, 
             we’d love to hear from you.
           </p>
         </div>
@@ -61,32 +61,7 @@ const Contact = () => {
         {/* Contact Section */}
         <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-10 px-6 pb-16">
           {/* Contact Info */}
-          <div className="bg-white shadow-md rounded-2xl p-8">
-            <h2 className="text-2xl font-semibold mb-6 text-indigo-600">Contact Information</h2>
-            <ul className="space-y-4 text-left text-gray-600">
-              <li>
-                <span className="font-medium text-gray-800">Email:</span> support@yourbusiness.com
-              </li>
-              <li>
-                <span className="font-medium text-gray-800">Phone:</span> +27 123 456 7890
-              </li>
-              <li>
-                <span className="font-medium text-gray-800">Address:</span> 123 Business Street,
-                Johannesburg, South Africa
-              </li>
-            </ul>
-            <div className="mt-6 flex space-x-6">
-              <a href="#" className="text-indigo-600 hover:text-indigo-800">
-                <RiFacebookCircleFill className="w-[20px] h-[20px]" />
-              </a>
-              <a href="#" className="text-indigo-600 hover:text-indigo-800">
-                <RiInstagramFill className="w-[20px] h-[20px]" />
-              </a>
-              <a href="#" className="text-indigo-600 hover:text-indigo-800">
-                <RiLinkedinBoxFill className="w-[20px] h-[20px]" />
-              </a>
-            </div>
-          </div>
+
 
           {/* Contact Form */}
           <div className="bg-white shadow-md rounded-2xl md:p-8 p-4">
@@ -143,6 +118,33 @@ const Contact = () => {
             {/* Status messages */}
             {status.success && <p className="mt-4 text-green-600">{status.success}</p>}
             {status.error && <p className="mt-4 text-red-600">{status.error}</p>}
+          </div>
+
+                    <div className="bg-white shadow-md rounded-2xl p-8">
+            <h2 className="text-2xl font-semibold mb-6 text-indigo-600">Contact Information</h2>
+            <ul className="space-y-4 text-left text-gray-600">
+              <li>
+                <span className="font-medium text-gray-800">Email:</span> support@yourbusiness.com
+              </li>
+              <li>
+                <span className="font-medium text-gray-800">Phone:</span> +27 123 456 7890
+              </li>
+              <li>
+                <span className="font-medium text-gray-800">Address:</span> 123 Business Street,
+                Johannesburg, South Africa
+              </li>
+            </ul>
+            <div className="mt-6 flex space-x-6">
+              <a href="#" className="text-indigo-600 hover:text-indigo-800">
+                <RiFacebookCircleFill className="w-[20px] h-[20px]" />
+              </a>
+              <a href="#" className="text-indigo-600 hover:text-indigo-800">
+                <RiInstagramFill className="w-[20px] h-[20px]" />
+              </a>
+              <a href="#" className="text-indigo-600 hover:text-indigo-800">
+                <RiLinkedinBoxFill className="w-[20px] h-[20px]" />
+              </a>
+            </div>
           </div>
         </div>
       </div>

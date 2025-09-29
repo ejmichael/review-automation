@@ -4,44 +4,44 @@ import Navbar from "../components/landingComps/navbar/Navbar";
 import { Link } from "react-router-dom";
 
 const HowItWorks = () => {
-  const steps = [
-    {
-      title: "Step 1: Choose Your Plan",
-      description:
-        "Select the package that fits your business — Basic (reviews + flyer), Growth (reviews + lead generation), or Comprehensive (reviews + lead gen + SMS & Email campaigns).",
-      icon: <FaCheckCircle className="text-indigo-600 text-3xl" />,
-    },
-    {
-      title: "Step 2: Onboarding & Setup",
-      description:
-        "We’ll collect your business details, design your branded flyers & review forms, and connect your Google Business Profile. Setup is quick and hassle-free.",
-      icon: <FaQrcode className="text-indigo-600 text-3xl" />,
-    },
-    {
-      title: "Step 3: Automated Review Requests",
-      description:
-        "Customers scan your flyer’s QR code or get an SMS/email after their visit. Happy customers leave 5-star Google reviews — boosting your visibility and trust.",
-      icon: <FaChartLine className="text-indigo-600 text-3xl" />,
-    },
-    {
-      title: "Step 4: Lead Generation (Growth & Comprehensive Plans)",
-      description:
-        "We create custom lead capture forms and landing pages for your business. Every lead that signs up goes directly into your dashboard for tracking & targeting.",
-      icon: <FaUserPlus className="text-indigo-600 text-3xl" />,
-    },
-    {
-      title: "Step 5: SMS & Email Campaigns (Comprehensive Plan)",
-      description:
-        "We’ll segment your leads and past customers, then send automated SMS & email campaigns with promotions, reminders, and offers — bringing them back again & again.",
-      icon: <FaEnvelopeOpenText className="text-indigo-600 text-3xl" />,
-    },
-    {
-      title: "Step 6: Track Results",
-      description:
-        "Log in to your dashboard anytime to see reviews, new leads, and campaign performance. We also send you a monthly report with clear insights.",
-      icon: <FaChartLine className="text-indigo-600 text-3xl" />,
-    },
-  ];
+const steps = [
+  {
+    title: "Choose Your Plan",
+    description:
+      "Pick the package that matches your goals. Whether you just need reviews, want reviews + new leads, or a complete growth system - we’ve got you covered.",
+    icon: <FaCheckCircle className="text-indigo-600 text-3xl" />,
+  },
+  {
+    title: "Quick Onboarding",
+    description:
+      "Share your business details, logo, and Google profile. We’ll design your flyers, forms, and connect everything so you’re ready in just a few days.",
+    icon: <FaQrcode className="text-indigo-600 text-3xl" />,
+  },
+  {
+    title: "Automated Review Requests",
+    description:
+      "Your customers get a simple text, email, or QR code link after their visit. Happy clients leave 5-star Google reviews - boosting your local visibility and trust.",
+    icon: <FaChartLine className="text-indigo-600 text-3xl" />,
+  },
+  {
+    title: "Generate New Leads",
+    description:
+      "For Growth & Comprehensive plans, we create custom lead capture pages and forms. Every signup goes straight into your dashboard for follow-up and nurturing.",
+    icon: <FaUserPlus className="text-indigo-600 text-3xl" />,
+  },
+  {
+    title: "Automated SMS & Email Campaigns",
+    description:
+      "With the Comprehensive plan, we segment your leads and past customers, then run SMS & email campaigns with promotions, reminders, and offers to drive repeat business.",
+    icon: <FaEnvelopeOpenText className="text-indigo-600 text-3xl" />,
+  },
+  {
+    title: "Track Results Anytime",
+    description:
+      "Log in to your dashboard to see reviews, new leads, and campaign performance. Plus, you’ll get a monthly report with clear, actionable insights.",
+    icon: <FaChartLine className="text-indigo-600 text-3xl" />,
+  },
+];
 
   return (
 <>

@@ -54,12 +54,12 @@ exports.initiateSubscription = async (req, res) => {
     const orderReference = uuidv4();
     const paymentReference = uuidv4();
 
-    //const payfastUrl = "https://sandbox.payfast.co.za/eng/process";
-    const payfastUrl = "https://www.payfast.co.za/eng/process"; // Live URL
-    // const merchantId = '10039863';
-    // const merchantKey = 'j98fxryfsolr8';
-    const merchantId = process.env.PAYFAST_MERCHANT_ID;
-    const merchantKey = process.env.PAYFAST_MERCHANT_KEY;
+    const payfastUrl = "https://sandbox.payfast.co.za/eng/process";
+    //const payfastUrl = "https://www.payfast.co.za/eng/process"; // Live URL
+     const merchantId = '10039862';
+     const merchantKey = 'ddrsjo9ep59vx';
+    //const merchantId = process.env.PAYFAST_MERCHANT_ID;
+    //const merchantKey = process.env.PAYFAST_MERCHANT_KEY;
 
     // Construct the query string
     const queryParams = new URLSearchParams({

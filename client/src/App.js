@@ -6,7 +6,7 @@ import ReviewPage from './pages/ReviewPage';
 import DashboardView from './pages/DashboardView';
 import Register from './pages/auth/Register';
 import Landing from './pages/Landing';
-import Pricing from './pages/pricing/Pricing';
+import Pricing from './pages/plans/Pricing';
 import TermsAndConditions from './pages/TermsAndConditions';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import Payment from './pages/Payment';
@@ -17,6 +17,8 @@ import Footer from './components/landingComps/footer/Footer';
 import HowItWorks from './pages/HowItWorks';
 import Contact from './pages/Contact';
 import AboutUs from './pages/AboutUs';
+import ViewPlan from './pages/plans/ViewPlan';
+import Checkout from './pages/checkout/Checkout';
 
 function App() {
   return (
@@ -26,7 +28,9 @@ function App() {
         <Route exact path="/" element={<Landing/>}/>
         <Route exact path="/about-us" element={<AboutUs/>}/>
         <Route exact path="/how-does-review-automation-work" element={<HowItWorks/>}/>
-        <Route exact path="/pricing" element={<Pricing/>}/>
+        <Route path="/plan/:planSlug" element={<ViewPlan />}/>
+        <Route path="/checkout/:planSlug" element={<Checkout />}/>
+        {/* <Route exact path="/pricing" element={<Pricing/>}/> */}
         <Route exact path="/contact-us" element={<Contact/>}/>
         <Route exact path="/review/:businessID" element={<ReviewPage/>}/>
         <Route exact path="/login" element={<Login/>}/>

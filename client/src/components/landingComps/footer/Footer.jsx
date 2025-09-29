@@ -12,7 +12,7 @@ const Footer = () => {
         <div>
           <Link to="/">
             <p className="text-indigo-600 text-2xl font-bold">
-              Easy<span className="text-gray-800">Outreach</span>
+              Easy<span className="text-gray-800"> Reviews</span>
             </p>
           </Link>
           <p className="text-gray-500 mt-2 text-sm">
@@ -45,7 +45,7 @@ const Footer = () => {
 
       {/* Copyright */}
       <div className="border-t border-slate-200 py-4 text-center text-gray-500 text-sm">
-        © {new Date().getFullYear()} <span className='font-semibold'>EasyOutreach</span>. All rights reserved.
+        © {new Date().getFullYear()} <span className='font-semibold'>Easy Reviews</span>. All rights reserved.
       </div>
     </footer>
   )

@@ -5,6 +5,7 @@ const connectToMongoDB = require('./src/db');
 const businessRouter = require('./src/routes/businessRoute');
 const payfastRouter = require('./src/routes/payfastRoute');
 const contactFormRouter = require('./src/routes/contactFormRoute');
+const customerRoute = require('./src/routes/customerRoute');
 const dotenv = require('dotenv').config();
  
 const app = express();
@@ -34,6 +35,7 @@ const app = express();
         app.use('/business', businessRouter) 
         app.use('/api/payfast', payfastRouter)
         app.use("/api", contactFormRouter);
+        app.use("/customer/", customerRoute);
           
 
         // Start the server

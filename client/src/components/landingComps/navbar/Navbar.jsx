@@ -13,20 +13,20 @@ const Navbar = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center">
             <p className="text-indigo-600 text-2xl font-bold">
-              Easy<span className="text-gray-800">Outreach</span>
+              Easy <span className="text-gray-800">Reviews</span>
             </p>
           </Link>
 
           {/* Desktop Nav */}
-          <div className="hidden md:flex items-center space-x-6">
-            <ul className="flex items-center gap-3">
-              <li className="font-medium hover:text-indigo-600 hover:underline decoration-double decoration-indigo-400">
+          <div className="hidden md:flex items-center space-x-10">
+            <ul className="flex items-center gap-6">
+              <li className=" hover:underline  decoration-indigo-400">
                 <Link to="/about-us">About</Link>
               </li>
-              <li className="font-medium hover:text-indigo-600 hover:underline decoration-double decoration-indigo-400">
-                <Link to="/pricing">Pricing</Link>
+              <li className=" hover:underline  decoration-indigo-400">
+                <Link to="/how-does-review-automation-work">How it works</Link>
               </li>
-              <li className="font-medium hover:text-indigo-600 hover:underline decoration-double decoration-indigo-400">
+              <li className=" hover:underline  decoration-indigo-400">
                 <Link to="/blog">Blog</Link>
               </li>
             </ul>
