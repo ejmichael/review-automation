@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import Navbar from "../../components/landingComps/navbar/Navbar";
 import axios from "axios";
-
+import ReactGA from "react-ga4";
 
 const Checkout = () => {
   const { planSlug } = useParams();
