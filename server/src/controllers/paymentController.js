@@ -68,7 +68,7 @@ exports.initiateSubscription = async (req, res) => {
       return_url: returnUrl,
       cancel_url: cancelUrl,
       notify_url: notifyUrl,
-      amount: "100", // Example: "100.00"
+      amount: amount, // Example: "100.00"
       item_name: itemName,
       email_address: email,
       m_payment_id: paymentReference, // Include the reference as PayFast's custom field
@@ -90,6 +90,8 @@ exports.initiateSubscription = async (req, res) => {
       orderReference,
       status: 'pending',
     });
+
+    
 
     // Send the reference and redirect URL back to the client
     res.status(200).json({

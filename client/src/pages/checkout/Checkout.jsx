@@ -32,12 +32,15 @@ const Checkout = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+      const domain = window.location.href.includes('localhost') ? "http://localhost:5000" : "https://review-automation-backend.onrender.com";
+
+
   const handlePayment = async () => {
     if (!selectedPlan) return;
 
     try {
       // 👇 Call backend API to save customer + get Payfast link
-      const res = await axios.post("http://localhost:5000/customer/create", {
+      const res = await axios.post(domain + "/customer/create", {
         ...formData,
         amount: selectedPlan.price, // pass plan amount
       });
