@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import Navbar from "../../components/landingComps/navbar/Navbar";
 import axios from "axios";
 
+
 const Checkout = () => {
   const { planSlug } = useParams();
 
@@ -36,6 +37,12 @@ const Checkout = () => {
 
 
   const handlePayment = async () => {
+    ReactGA.event({
+    category: "Checkout",
+    action: "Click Pay Now",
+    label: selectedPlan.name,
+    value: parseInt(selectedPlan.price),
+  });
     if (!selectedPlan) return;
 
     try {

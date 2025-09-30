@@ -1,7 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Navbar from '../../components/landingComps/navbar/Navbar';
+import ReactGA from "react-ga4";
 
 const PaymentSuccess = () => {
+
+  useEffect(() => {
+  ReactGA.event({
+    category: "Payment",
+    action: "Payment Success",
+    label: "Payfast",
+    value: 1, // you can pass amount instead
+  });
+}, []);
+
+
   return (
     <>
       <Navbar />
