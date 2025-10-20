@@ -124,13 +124,13 @@ const Contact = () => {
             <h2 className="text-2xl font-semibold mb-6 text-indigo-600">Contact Information</h2>
             <ul className="space-y-4 text-left text-gray-600">
               <li>
-                <span className="font-medium text-gray-800">Email:</span> support@yourbusiness.com
+                <span className="font-medium text-gray-800">Email:</span> ethan@easy-outreach.com
               </li>
               <li>
-                <span className="font-medium text-gray-800">Phone:</span> +27 123 456 7890
+                <span className="font-medium text-gray-800">Phone:</span> +27 76 251 9918
               </li>
               <li>
-                <span className="font-medium text-gray-800">Address:</span> 123 Business Street,
+                <span className="font-medium text-gray-800">Address: </span>  
                 Johannesburg, South Africa
               </li>
             </ul>

@@ -141,7 +141,7 @@ exports.handleNotify = async (req, res) => {
 
     // Step 3: Verify data with PayFast
     const response = await axios.post(
-      'https://www.payfast.co.za/eng/query/validate',
+      'https://www.payfast.co.za/eng/query/validate', 
       querystring.stringify(req.body),
       { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }
     );

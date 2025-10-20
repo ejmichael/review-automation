@@ -94,7 +94,7 @@ const Register = () => {
         formData.append("upload_preset", "my_own_preset");
     
         try {
-            const response = await fetch("https://api.cloudinary.com/v1_1/dwvrx1rhr/image/upload", {
+            const response = await fetch("https://api.cloudinary.com/v1_1/dwvrx1rhr/image/upload", { 
               method: "POST",
               body: formData,
             });
