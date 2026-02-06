@@ -102,6 +102,7 @@ const Checkout = () => {
 
           {/* User Form */}
           <form className="space-y-4">
+            
             <div className="flex gap-2">
               <input type="text" name="firstName" placeholder="Your first name"
                 value={formData.firstName} onChange={handleChange}
