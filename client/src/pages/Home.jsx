@@ -3,6 +3,9 @@ import DashboardTable from '../components/DashboardTable'
 import ReviewChart from '../components/ReviewChart'
 
 const Home = ({businessInfo}) => {
+
+    console.log(businessInfo);
+    
   return (
     <div className='w-full p-4'>
         <div className='w-full flex justify-between mb-4'>
@@ -48,7 +51,7 @@ const Home = ({businessInfo}) => {
                     <div className='border shadow-md rounded-md p-4 bg-white w-full'>
                         <div className='text-left font-medium text-lg'>Reviews</div>
                         <div className='p-3 items-end my-2'>
-                            <p className='text-5xl text-slate-800 mb-3' >{businessInfo?.reviews.length}</p>
+                            <p className='text-5xl text-slate-800 mb-3' >{businessInfo?.reviews?.length}</p>
                             <p className='text-slate-600 italic'>reviews recieved</p>
                         </div>
                     </div>

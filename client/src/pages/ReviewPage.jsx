@@ -45,7 +45,7 @@ const ReviewPage = () => {
 
             
             try {
-                const response = await axios.get(`${domain}/business/${businessID}`);
+                const response = await axios.get(`${domain}/business/get-business-info/${businessID}`);
 
                 if (typeof response.data === "object" && response.data !== null) {
                     setBusinessInfo(response.data);

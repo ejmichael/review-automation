@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
 import Navbar from "../../components/landingComps/navbar/Navbar";
 import axios from "axios";
@@ -7,57 +7,83 @@ import ReactGA from "react-ga4";
 const Checkout = () => {
   const { planSlug } = useParams();
 
-  // Plan data
-  const plans = [
-    { name: "Basic", slug: "basic", price: 399, description: "Perfect for small businesses just starting with Google reviews." },
-    { name: "Growth", slug: "growth", price: 1099, description: "Ideal for businesses looking to grow reviews and generate leads." },
-    { name: "Comprehensive", slug: "comprehensive", price: 1499, description: "Full package for businesses that want automation & customer retention." },
-  ];
+  const domain = window.location.href.includes("localhost")
+    ? "http://localhost:5000"
+    : "https://review-automation-backend.onrender.com";
 
-  const selectedPlan = plans.find((plan) => plan.slug === planSlug);
+  // Keep plan display ONLY (pricing is decided server-side)
+  const plans = useMemo(
+    () => [
+      { name: "Basic", slug: "basic", description: "Perfect for small businesses just starting with Google reviews." },
+      { name: "Growth", slug: "growth", description: "Ideal for businesses looking to grow reviews and generate leads." },
+      { name: "Comprehensive", slug: "comprehensive", description: "Full package for businesses that want automation & customer retention." },
+    ],
+    []
+  );
+
+  const selectedPlan = plans.find((p) => p.slug === planSlug) || plans[0];
 
   const [formData, setFormData] = useState({
     firstName: "",
-    lastName: "",
-    emailAddress: "",
-    phoneNumber: "",
+    email: "",
+    phone: "",
     businessName: "",
-    street: "",
-    buildingName: "",
-    city: "",
-    country: "South Africa",
-    plan: planSlug,
   });
+
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-      const domain = window.location.href.includes('localhost') ? "http://localhost:5000" : "https://review-automation-backend.onrender.com";
-
+  const validate = () => {
+    if (!formData.firstName.trim()) return "Please enter your first name.";
+    if (!formData.email.trim()) return "Please enter your email.";
+    if (!formData.phone.trim()) return "Please enter your phone number.";
+    if (!formData.businessName.trim()) return "Please enter your business name.";
+    return null;
+  };
 
   const handlePayment = async () => {
-    ReactGA.event({
-    category: "Checkout",
-    action: "Click Pay Now",
-    label: selectedPlan.name,
-    value: parseInt(selectedPlan.price),
-  });
-    if (!selectedPlan) return;
+    const err = validate();
+    if (err) return alert(err);
+
+    setLoading(true);
 
     try {
-      // 👇 Call backend API to save customer + get Payfast link
-      const res = await axios.post(domain + "/customer/create", {
-        ...formData,
-        amount: selectedPlan.price, // pass plan amount
+      ReactGA.event({
+        category: "Checkout",
+        action: "Click Pay Now",
+        label: selectedPlan.slug,
       });
 
-      if (res.data.payfastUrl) {
-        window.location.href = res.data.payfastUrl; // redirect to Payfast
-      }
+      // 1) Create Lead
+      const leadRes = await axios.post(`${domain}/api/checkout/start`, {
+        firstName: formData.firstName,
+        email: formData.email,
+        phone: formData.phone,
+        businessName: formData.businessName,
+        plan: selectedPlan.slug,
+      });
+
+      const leadId = leadRes.data.leadId;
+      if (!leadId) throw new Error("Lead not created");
+
+      // 2) Create subscription and get PayFast URL
+      const subRes = await axios.post(`${domain}/api/payfast/subscribe`, {
+        leadId,
+        plan: selectedPlan.slug,
+      });
+
+      const redirectUrl = subRes.data.redirectUrl;
+      if (!redirectUrl) throw new Error("No redirectUrl returned");
+
+      // 3) Redirect to PayFast
+      window.location.href = redirectUrl;
     } catch (error) {
-      console.error("Payment error:", error.response?.data || error.message);
-      alert("Something went wrong. Please try again.");
+      console.error("Checkout error:", error.response?.data || error.message);
+      alert(error.response?.data?.message || "Something went wrong. Please try again.");
+      setLoading(false);
     }
   };
 
@@ -81,14 +107,16 @@ const Checkout = () => {
           {/* Plan Info */}
           <div className="bg-gray-100 rounded-lg p-4 mb-6">
             <p className="text-lg font-semibold">{selectedPlan.name} Plan</p>
-            <p className="text-xl font-bold text-indigo-600">R{selectedPlan.price}/mo</p>
             <p className="text-sm text-gray-600 mt-2">{selectedPlan.description}</p>
+            <p className="text-xs text-gray-500 mt-2">
+              Payment is processed securely via PayFast.
+            </p>
           </div>
 
           <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
             <h3 className="text-lg font-semibold text-indigo-600 mb-2">What happens next?</h3>
             <p className="text-sm text-gray-700 mb-2">
-              Once your payment is complete, our team will reach out within 24 hours to set everything up for you.
+              Once payment is complete, we’ll reach out within 24 hours to set everything up for you.
             </p>
             <ul className="text-sm text-gray-700 list-disc ml-5 space-y-1">
               <li>We’ll collect your business photos, branding and contact details</li>
@@ -99,55 +127,56 @@ const Checkout = () => {
             </ul>
           </div>
 
+          {/* Short Form */}
+          <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
+            <input
+              type="text"
+              name="firstName"
+              placeholder="Your first name"
+              value={formData.firstName}
+              onChange={handleChange}
+              className="w-full border p-3 rounded-lg"
+            />
 
-          {/* User Form */}
-          <form className="space-y-4">
-            
-            <div className="flex gap-2">
-              <input type="text" name="firstName" placeholder="Your first name"
-                value={formData.firstName} onChange={handleChange}
-                className="w-full border p-3 rounded-lg" />
-              <input type="text" name="lastName" placeholder="Your surname"
-                value={formData.lastName} onChange={handleChange}
-                className="w-full border p-3 rounded-lg" />
-            </div>
+            <input
+              type="email"
+              name="email"
+              placeholder="Your email address"
+              value={formData.email}
+              onChange={handleChange}
+              className="w-full border p-3 rounded-lg"
+            />
 
-            <input type="email" name="emailAddress" placeholder="Your email address"
-              value={formData.emailAddress} onChange={handleChange}
-              className="w-full border p-3 rounded-lg" />
+            <input
+              type="tel"
+              name="phone"
+              placeholder="Your phone number"
+              value={formData.phone}
+              onChange={handleChange}
+              className="w-full border p-3 rounded-lg"
+            />
 
-            <input type="phone" name="phoneNumber" placeholder="Your phone number"
-              value={formData.phoneNumber} onChange={handleChange}
-              className="w-full border p-3 rounded-lg" />
-
-            <input type="text" name="businessName" placeholder="Your business name"
-              value={formData.businessName} onChange={handleChange}
-              className="w-full border p-3 rounded-lg" />
-
-            <input type="text" name="street" placeholder="Street Address"
-              value={formData.street} onChange={handleChange}
-              className="w-full border p-3 rounded-lg" />
-
-            <input type="text" name="buildingName" placeholder="Apartment or building name (optional)"
-              value={formData.buildingName} onChange={handleChange}
-              className="w-full border p-3 rounded-lg" />
-
-            <input type="text" name="city" placeholder="City"
-              value={formData.city} onChange={handleChange}
-              className="w-full border p-3 rounded-lg" />
-
-            <input type="text" name="country" placeholder="Country"
-              value={formData.country} onChange={handleChange}
-              className="w-full border p-3 rounded-lg" />
+            <input
+              type="text"
+              name="businessName"
+              placeholder="Your business name"
+              value={formData.businessName}
+              onChange={handleChange}
+              className="w-full border p-3 rounded-lg"
+            />
           </form>
 
-          {/* Payfast Button */}
           <button
             onClick={handlePayment}
-            className="mt-6 w-full py-3 bg-indigo-600 text-white rounded-xl font-semibold hover:bg-indigo-700 transition"
+            disabled={loading}
+            className="mt-6 w-full py-3 bg-indigo-600 text-white rounded-xl font-semibold hover:bg-indigo-700 transition disabled:opacity-60"
           >
-            Pay Now
+            {loading ? "Redirecting to PayFast..." : "Pay Now"}
           </button>
+
+          <p className="text-xs text-gray-500 mt-3 text-center">
+            By paying, you agree to our terms and subscription billing.
+          </p>
         </div>
       </div>
     </>

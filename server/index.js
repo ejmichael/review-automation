@@ -6,6 +6,7 @@ const businessRouter = require('./src/routes/businessRoute');
 const payfastRouter = require('./src/routes/payfastRoute');
 const contactFormRouter = require('./src/routes/contactFormRoute');
 const customerRoute = require('./src/routes/customerRoute');
+const checkoutRouter = require('./src/routes/checkoutRoute');
 const dotenv = require('dotenv').config();
  
 const app = express();
@@ -19,10 +20,10 @@ const app = express();
         
         // Middleware
         app.use(express.json());
-        // app.use(cors({ 
-        //     origin: "http://localhost:3000"
-        //   }));
-        app.use(cors());
+        app.use(cors({ 
+            origin: "http://localhost:3000"
+          }));
+        // app.use(cors());
         app.use(express.urlencoded({ extended: true }));
 
         // Routes
@@ -31,6 +32,7 @@ const app = express();
         });
 
 
+        app.use('/api/checkout', checkoutRouter) 
         app.use('/review', reviewRouter) 
         app.use('/business', businessRouter) 
         app.use('/api/payfast', payfastRouter)

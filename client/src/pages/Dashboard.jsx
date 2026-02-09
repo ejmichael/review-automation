@@ -15,10 +15,11 @@ const Dashboard = () => {
       }
   }, [businessID, navigate]);
 
-        useEffect(() => {
+      useEffect(() => {
         if (!user) {
           navigate('/login');
-        }})
+        }
+      }, [user, navigate])
 
 
   return (

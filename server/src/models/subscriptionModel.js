@@ -1,21 +1,17 @@
-// models/Subscription.js
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
-const SubscriptionSchema = new mongoose.Schema({
-  name: { type: String },
-  email: { type: String, required: true },
-  googlePlaceId: { type: String },
-  paymentReference: { type: String, required: true }, // m_payment_id
-  orderReference: { type: String },
-  status: { type: String, default: 'pending' }, // pending, completed, failed
-  source: { type: String, default: 'payfast' },
-  createdAt: { type: Date, default: Date.now },
-  updatedAt: { type: Date, default: Date.now },
-});
+const SubscriptionSchema = new mongoose.Schema(
+  {
+    businessId: { type: mongoose.Schema.Types.ObjectId, ref: "Business", default: null, index: true },
+    leadId: { type: mongoose.Schema.Types.ObjectId, ref: "Lead", default: null, index: true },
 
-SubscriptionSchema.pre('save', function (next) {
-  this.updatedAt = Date.now();
-  next();
-});
+    plan: { type: String, default: "standard" },
+    status: { type: String, enum: ["pending", "active", "cancelled", "past_due"], default: "pending" },
 
-module.exports = mongoose.model('Subscription', SubscriptionSchema);
+    paymentReference: { type: String, required: true, index: true }, // m_payment_id
+    provider: { type: String, default: "payfast" },
+  },
+  { timestamps: true }
+);
+
+module.exports = mongoose.model("Subscription", SubscriptionSchema);

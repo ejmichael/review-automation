@@ -4,6 +4,8 @@ const { v4: uuidv4 } = require('uuid');
 require('dotenv').config();
 const querystring = require('querystring');
 const Subscription = require('../models/subscriptionModel');
+const Lead = require('../models/leadsModel');
+
 
 // Define the field order as per PayFast documentation
 const FIELD_ORDER = [
@@ -34,63 +36,91 @@ const generateSignature = (params, passphrase) => {
   return crypto.createHash('md5').update(stringToHash).digest('hex');
 };
 
+const PRICING = {
+  basic: "19.00",
+  growth: "29.00",
+  comprehensive: "1299.00",
+};
 
 // Controller to initiate subscription
 exports.initiateSubscription = async (req, res) => {
   console.log("Initiating payment on backend");
 
+
   try {
-    const {
-      amount,
-      itemName,
-      email,
-      name,
-      googlePlaceId,
-      returnUrl,
-      cancelUrl,
-      notifyUrl,
-    } = req.body;
+   const {leadId, plan} = req.body;
+
+   const lead = await Lead.findById(leadId)
+
+   if(!lead) {
+    return res.status(500).json({ message: "No customer created"})
+   }
+
+    const chosenPlan = (plan || "basic").toLowerCase();
+    const amount = PRICING[chosenPlan] || PRICING.basic;
 
     const orderReference = uuidv4();
     const paymentReference = uuidv4();
 
-    const payfastUrl = "https://sandbox.payfast.co.za/eng/process";
-    //const payfastUrl = "https://www.payfast.co.za/eng/process"; // Live URL
-     const merchantId = '10039862';
-     const merchantKey = 'ddrsjo9ep59vx';
-    //const merchantId = process.env.PAYFAST_MERCHANT_ID;
-    //const merchantKey = process.env.PAYFAST_MERCHANT_KEY;
+    // const payfastUrl = "https://sandbox.payfast.co.za/eng/process";
+    const payfastUrl = "https://www.payfast.co.za/eng/process"; // Live URL
+    //  const merchantId = '10039862';
+    //  const merchantKey = 'ddrsjo9ep59vx';
+    const merchantId = process.env.PAYFAST_MERCHANT_ID;
+    const merchantKey = process.env.PAYFAST_MERCHANT_KEY;
+
+
+    // 🔑 Payfast setup
+    //  const merchant_id = '10039862';
+    //  const merchant_key = 'ddrsjo9ep59vx';
+    // const merchant_id = process.env.PAYFAST_MERCHANT_ID;
+    // const merchant_key = process.env.PAYFAST_MERCHANT_KEY;
+    const return_url = "https://review-automation.onrender.com/success" ;
+    const cancel_url = "https://review-automation.onrender.com/cancel";
+    const notify_url = "https://review-automation-backend.onrender.com/notify";
+
+    // Build Payfast payment URL
+    // const paymentData = {
+    //   merchant_id,
+    //   merchant_key,
+    //   return_url,
+    //   cancel_url,
+    //   notify_url,
+    //   amount: amount.toFixed(2),
+    //   item_name: `${businessName} - ${firstName} ${lastName}`,
+    //   email_address: emailAddress,
+    //   custom_str1: customer._id.toString(), // track customer
+    // };
 
     // Construct the query string
     const queryParams = new URLSearchParams({
       merchant_id: merchantId,
       merchant_key: merchantKey,
-      return_url: returnUrl,
-      cancel_url: cancelUrl,
-      notify_url: notifyUrl,
+      return_url,
+      cancel_url,
+      notify_url,
       amount: amount, // Example: "100.00"
-      item_name: itemName,
-      email_address: email,
+      item_name: "Review Automation",
+      email_address: lead.email,
       m_payment_id: paymentReference, // Include the reference as PayFast's custom field
       subscription_type: '1',  // 1 for recurring
       frequency: '3',  // Frequency: 3 = monthly
       cycles: '0',  // 0 for indefinite
-      custom_str1: googlePlaceId || '',
-      custom_str2: name || '',
+      custom_str1: lead._id.toString() || '',
+      custom_str2: lead.businessName || '',
     });
 
     const redirectUrl = `${payfastUrl}?${queryParams.toString()}`;
 
     // Save subscription attempt to DB
     await Subscription.create({
-      name,
-      email,
-      googlePlaceId,
+      leadId: lead._id,
       paymentReference,
-      orderReference,
-      status: 'pending',
+      plan: chosenPlan,
+      status: "pending",
+      provider: "payfast",
     });
-
+ 
     
 
     // Send the reference and redirect URL back to the client
