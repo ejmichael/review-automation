@@ -37,9 +37,9 @@ const generateSignature = (params, passphrase) => {
 };
 
 const PRICING = {
-  basic: "19.00",
-  growth: "29.00",
-  comprehensive: "1299.00",
+  basic: "399.00",
+  growth: "1099.00",
+  comprehensive: "1499.00",
 };
 
 // Controller to initiate subscription
