@@ -21,7 +21,8 @@ const createReview = async (req, res) => {
     }
 
     const reviewedByUser = await Review.findOne({
-      $or: [{ phone }, { email }],
+      businessID, 
+      $or: [{ phone }, { email },],
     });
 
     if (reviewedByUser) {
@@ -30,8 +31,8 @@ const createReview = async (req, res) => {
 
     const review = await Review.create(reviewData);
 
-    businessExists.reviews.push(review._id);
-    await businessExists.save();
+    //businessExists.reviews.push(review._id);
+    //await businessExists.save();
 
     console.log("Review Created:", review);
 
