@@ -121,7 +121,8 @@ const getBusinessInfo = async (req, res) => {
     //const {email, password} = req.body;
     const {businessID} = req.params;
     try {
-        const business = await BusinessInfo.findById(businessID).populate('reviews').exec();
+        const business = await BusinessInfo.findById(businessID)
+        // const business = await BusinessInfo.findById(businessID).populate('reviews').exec();
 
         if(!business) {
             res.status(400).json({message: "Business not registered."})

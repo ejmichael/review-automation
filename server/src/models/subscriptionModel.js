@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const SubscriptionSchema = new mongoose.Schema(
   {
-    businessId: { type: mongoose.Schema.Types.ObjectId, ref: "Business", default: null, index: true },
+    businessId: { type: mongoose.Schema.Types.ObjectId, ref: "BusinessInfo", default: null, index: true },
     leadId: { type: mongoose.Schema.Types.ObjectId, ref: "Lead", default: null, index: true },
 
     plan: { type: String, default: "standard" },

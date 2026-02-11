@@ -190,6 +190,9 @@ exports.handleNotify = async (req, res) => {
         { status: 'active' }
       );
 
+    const leadId = pfData.custom_str1;
+    await Lead.findByIdAndUpdate(leadId, { status: "paid" });
+
       // Additional logic here (send confirmation emails, etc)
     } else {
       console.warn('Payment not complete:', pfData.payment_status);
