@@ -25,6 +25,7 @@ const Checkout = () => {
 
   const [formData, setFormData] = useState({
     firstName: "",
+    lastName: "",
     email: "",
     phone: "",
     businessName: "",
@@ -38,6 +39,7 @@ const Checkout = () => {
 
   const validate = () => {
     if (!formData.firstName.trim()) return "Please enter your first name.";
+    if (!formData.lastName.trim()) return "Please enter your last name.";
     if (!formData.email.trim()) return "Please enter your email.";
     if (!formData.phone.trim()) return "Please enter your phone number.";
     if (!formData.businessName.trim()) return "Please enter your business name.";
@@ -58,8 +60,9 @@ const Checkout = () => {
       });
 
       // 1) Create Lead
-      const leadRes = await axios.post(`${domain}/api/checkout/start`, {
+      const leadRes = await axios.post(`${domain}/api/checkout/start`, { 
         firstName: formData.firstName,
+        lastName: formData.lastName,
         email: formData.email,
         phone: formData.phone,
         businessName: formData.businessName,
@@ -134,6 +137,14 @@ const Checkout = () => {
               name="firstName"
               placeholder="Your first name"
               value={formData.firstName}
+              onChange={handleChange}
+              className="w-full border p-3 rounded-lg"
+            />
+            <input
+              type="text"
+              name="lastName"
+              placeholder="Your last name"
+              value={formData.lastName}
               onChange={handleChange}
               className="w-full border p-3 rounded-lg"
             />

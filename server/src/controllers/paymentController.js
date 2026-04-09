@@ -57,17 +57,17 @@ exports.initiateSubscription = async (req, res) => {
    }
 
     const chosenPlan = (plan || "basic").toLowerCase();
-    const amount = PRICING[chosenPlan] || PRICING.basic;
+    const amount = PRICING[chosenPlan] || PRICING.basic; 
 
     const orderReference = uuidv4();
     const paymentReference = uuidv4();
 
-    // const payfastUrl = "https://sandbox.payfast.co.za/eng/process";
-    const payfastUrl = "https://www.payfast.co.za/eng/process"; // Live URL
-    //  const merchantId = '10039862';
-    //  const merchantKey = 'ddrsjo9ep59vx';
-    const merchantId = process.env.PAYFAST_MERCHANT_ID;
-    const merchantKey = process.env.PAYFAST_MERCHANT_KEY;
+    const payfastUrl = "https://sandbox.payfast.co.za/eng/process";
+    // const payfastUrl = "https://www.payfast.co.za/eng/process"; // Live URL
+     const merchantId = '10039862';
+     const merchantKey = 'ddrsjo9ep59vx';
+    // const merchantId = process.env.PAYFAST_MERCHANT_ID;
+    // const merchantKey = process.env.PAYFAST_MERCHANT_KEY;
 
 
     // 🔑 Payfast setup
@@ -75,7 +75,7 @@ exports.initiateSubscription = async (req, res) => {
     //  const merchant_key = 'ddrsjo9ep59vx';
     // const merchant_id = process.env.PAYFAST_MERCHANT_ID;
     // const merchant_key = process.env.PAYFAST_MERCHANT_KEY;
-    const return_url = "https://review-automation.onrender.com/success" ;
+    const return_url = `https://review-automation.onrender.com/success?leadId=${lead._id}` ;
     const cancel_url = "https://review-automation.onrender.com/cancel";
     const notify_url = "https://review-automation-backend.onrender.com/notify";
 
@@ -121,6 +121,7 @@ exports.initiateSubscription = async (req, res) => {
       provider: "payfast",
     });
  
+    console.log(redirectUrl);
     
 
     // Send the reference and redirect URL back to the client
@@ -187,7 +188,7 @@ exports.handleNotify = async (req, res) => {
 
       await Subscription.findOneAndUpdate(
         { paymentReference: pfData.m_payment_id },
-        { status: 'active' }
+        { status: 'paid' }
       );
 
     const leadId = pfData.custom_str1;

@@ -1,8 +1,16 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Navbar from '../../components/landingComps/navbar/Navbar';
 import ReactGA from "react-ga4";
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 
 const PaymentSuccess = () => {
+
+  const [searchParams] = useSearchParams();
+  const leadId = searchParams.get("leadId")
+  const navigate = useNavigate();
+  const [isPaid, setIsPaid] = useState(false);
+
+
 
   useEffect(() => {
   ReactGA.event({
@@ -12,6 +20,8 @@ const PaymentSuccess = () => {
     value: 1, // you can pass amount instead
   });
 }, []);
+
+
 
 
   return (
@@ -32,6 +42,9 @@ const PaymentSuccess = () => {
             </h3>
             <ul className="list-disc pl-6 space-y-3 text-gray-700">
               <li>
+                Complete the short registration by clicking the button below.
+              </li>
+              <li>
                 One of our team members will reach out to you within the next
                 24–48 hours.
               </li>
@@ -47,6 +60,12 @@ const PaymentSuccess = () => {
                 customer reviews right away.
               </li>
             </ul>
+
+            <div className='flex justify-center mt-6'>
+              <Link to={`/register?leadId=${leadId}`}>
+                  <button className='bg-indigo-600 text-white p-3 rounded-md'>Complete Registration</button>
+              </Link>
+            </div>
           </div>
 
           <p className="mt-10 text-gray-600">

@@ -14,7 +14,7 @@ export const useRegister = () => {
         setIsLoading(true)
         setError(null)
 
-        const response = await axios.post(domain + '/business/create', business) 
+        const response = await axios.post(domain + '/business/create', business)  
         
         if(!response) {
             setIsLoading(false)
@@ -33,6 +33,23 @@ export const useRegister = () => {
         }
     }
 
-    return { register, isLoading, error}
+        const checkCustomer = async (leadId) => {
+        try {
+            setIsLoading(true)
+            setError(null)
+
+            const response = await axios.get(`${domain}/business/validate-customer/${leadId}`)
+
+            // Always return response.data, not the full Axios response
+            return response.data
+        } catch (err) {
+            setError(err.response?.data || err.message)
+            throw err
+        } finally {
+            setIsLoading(false)
+        }
+        }
+
+    return { register, checkCustomer, isLoading, error}
 
 }

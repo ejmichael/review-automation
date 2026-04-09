@@ -2,7 +2,7 @@ const Lead = require("../models/leadsModel");
 
 const startCheckout = async (req, res) => {
   try {
-    const { firstName, email, phone, businessName, plan } = req.body;
+    const { firstName, lastName, email, phone, businessName, plan } = req.body;
 
     if (!firstName || !email || !phone || !businessName) {
       return res.status(400).json({ message: "Missing required fields" });
@@ -11,10 +11,11 @@ const startCheckout = async (req, res) => {
     const existingPending = await Lead.findOne({ email: email.toLowerCase().trim(), status: "pending" });
     if (existingPending) {
       return res.status(200).json({ leadId: existingPending._id, message: "Lead already started" });
-    }
+    } 
 
     const lead = await Lead.create({
       firstName,
+      lastName,
       email,
       phone,
       businessName,

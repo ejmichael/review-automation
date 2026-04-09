@@ -2,6 +2,7 @@ const express = require('express');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const BusinessInfo = require('../models/businessInfoModel')
+const Lead = require('../models/leadsModel');
 
 const createBusiness = async(req, res) => {
 
@@ -134,6 +135,29 @@ const getBusinessInfo = async (req, res) => {
 
 }
 
+
+const checkCustomerExists = async (req, res) => {
+
+    const { leadId } = req.params
+
+    try {
+        const customerExists = await Lead.findById(leadId);
+
+        console.log(customerExists);
+        
+        
+        if(!customerExists) {
+            return res.status(500).json({ message: "Customer does not exists"})
+        }
+
+        return res.status(200).json(customerExists)
+
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ message: error.message })
+    }
+}
+
 //generate jwt token
 const generateToken = (id) => {
     return jwt.sign({ id }, process.env.JWT_SECRET, {
@@ -144,5 +168,6 @@ const generateToken = (id) => {
 module.exports = {
     createBusiness, 
     getBusinessInfo,
-    loginBusiness
+    loginBusiness,
+    checkCustomerExists
 }
